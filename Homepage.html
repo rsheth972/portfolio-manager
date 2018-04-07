@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="AmplifyPortfolio.css">
+
+</head>
+<body>
+
+<div class="header">
+  <h2 style="white-space:pre">Portfolio king&#9;<span class="glyphicon glyphicon-king glyphicon-bordered"></span></h2>
+</div>
+<ul id="navbar">
+    <!--<li style="float:left; color:white;"><strong>Portfolio Manager</strong></li>-->
+    <li style="float:right"><a href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li ><a class="active" href="#home">Home</a></li>
+    <li ><a href="#news">News</a></li>
+</ul>
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+        </ol>
+    
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          <div class="item active">
+            <img src="Stock-Portfolio-2.jpg" alt="Image" width="600" height="400">
+            <div class="carousel-caption">
+              <h3>Easy to use</h3>
+              <p style="color:royalblue">We offer a easy to use site with all the features you need</p>
+            </div>      
+          </div>
+    
+          <div class="item">
+            <img src="main.jpg" alt="Image" width="600" height="400">
+            <div class="carousel-caption">
+                <br><br>
+                <h3>Easy to use</h3>
+                <p style="color:royalblue">We offer a easy to use site with all the features you need</p>
+            </div>      
+          </div>
+        </div>
+    
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <div class="container text-center">    
+            <h3 style="text-align: left"><strong>What We Do</strong></h3><br>
+            <div class="row">
+              <div class="col-sm-4">
+                <h4>Current Project</h4>
+                <p style="font-size: 14px">me pak gaya hu yeh sab kar ke abhi rohit tu isme kachra bhar dena muje kuch mil nahi raha hai daal ne ko.
+                    me pak gaya hu yeh sab kar ke abhi rohit tu isme kachra bhar dena muje kuch mil nahi raha hai daal ne ko.
+                    me pak gaya hu yeh sab kar ke abhi rohit tu isme kachra bhar dena muje kuch mil nahi raha hai daal ne ko.
+                    me pak gaya hu yeh sab kar ke abhi rohit tu isme kachra bhar dena muje kuch mil nahi raha hai daal ne ko</p>
+              </div>
+              <div class="col-sm-4"> 
+                <p>Project 2</p>
+                <p style="font-size: 14px">me pak gaya hu yeh sab kar ke abhi rohit tu isme kachra bhar dena muje kuch mil nahi raha hai daal ne ko.
+                me pak gaya hu yeh sab kar ke abhi rohit tu isme kachra bhar dena muje kuch mil nahi raha hai daal ne ko.
+                me pak gaya hu yeh sab kar ke abhi rohit tu isme kachra bhar dena muje kuch mil nahi raha hai daal ne ko.
+                me pak gaya hu yeh sab kar ke abhi rohit tu isme kachra bhar dena muje kuch mil nahi raha hai daal ne ko</p>
+    
+              </div>
+              <div class="col-sm-4">
+                <div class="well">
+                        <p style="font-size: 16px">me pak gaya hu yeh sab kar ke abhi rohit tu isme kachra bhar dena muje kuch mil nahi raha hai daal ne ko</p>
+
+                </div>
+                <div class="well">
+                        <p style="font-size: 16px">me pak gaya hu yeh sab kar ke abhi rohit tu isme kachra bhar dena muje kuch mil nahi raha hai daal ne ko</p>
+                </div>
+              </div>
+            </div>
+          </div><br>
+    <div class="container text-center">    
+        <h3 style="text-align: left"><strong>What We Do</strong></h3><br>
+        <div class="row">
+            <div class="col-sm-6">
+            <img src="nepse-forum.png" class="img-responsive" style="width:100%; height:330px" alt="Image">
+            <p>Current Project</p>
+            </div>
+            <div class="col-sm-6"> 
+            <img src="stock-featured.jpg" class="img-responsive" style="width:100%; height:330px" alt="Image">
+            <p>Project 2</p>    
+            </div>
+        </div>
+        </div><br>
+
+<!--Login popup-->    
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+        <div class="loginmodal-container">
+          <h1>Login to Your Account</h1><br>
+          <form>
+          <input type="text" name="user" placeholder="Username">
+          <input type="password" name="pass" placeholder="Password">
+          <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+          </form>
+          
+          <div class="login-help">
+            <a href="#" data-toggle="modal" data-target="#signup-modal"><h5>Register</h5></a> - <a href="#"><h5>Forgot Password</h5></a>
+          </div>
+        </div>
+    </div>
+</div>
+
+<!--Signup popup-->    
+<div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+        <div class="loginmodal-container">
+        <h3>Create Your Account</h3><br>
+        <form>
+        <input type="text" name="user" placeholder="Create Username" required="required">
+        <input type="text" name="name" placeholder="Your Name" required="required">
+        <input type="text" name="address" placeholder="Address" required="required">
+        <input type="submit" name="Next" class="login loginmodal-submit" data-toggle="modal" data-target="#next" value="Next ->">
+        </form>
+    </div>
+    </div>
+    </div>
+    <div class="modal fade" id="next" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+            <div class="loginmodal-container">
+              <h3>Create your Account</h3><h4>Page 2</h4><br>
+              <form>
+                    <input type="text" name="Aadhar" placeholder="Aadhar card no./Pan no." required="required">
+                     <input type="radio" name="idver" required="required">Aadhar card no<br>   
+                    <input type="radio" name="idver" required="required" >Pan no.<br><br>
+                    <input type="email" name="Email" placeholder="Email address" required="required">
+                    <input type="date" name="Birthday" placeholder="Enter your birthday" required="required">
+                    <input type="password" name="pass" placeholder="Create a Password" required="required">
+                    <input type="submit" name="Register" class="login loginmodal-submit" value="Register">
+              </form>
+            </div>
+          </div>
+          </div>
+    <footer>
+        <div class="jumbotron" style="margin-top:80px" >
+            <div style = "color:rgb(46, 69, 196); font-weight:bolder; "><u>Contact Us</u>
+                <!-- <span class="dash" style="width:20px;border:5px solid rgb(46, 69, 196)" ></span>-->
+            </div><br>
+            <div class="row">
+                    <div class="col-md-4">
+                        <div class="alert alert-info col-centered" >
+                            <div class="glyphicon-ring glyphicon-teal" style="align-items: center"> <span class="glyphicon glyphicon-envelope glyphicon-bordered"></span>
+                            </div><br>
+                            <h4>Address</h4>
+                            <p style="color:black; font-size: 15px; ">Sone sone patole lakhaan
+                                    Sone sone patole yeah…
+                                    Ae takdiyaan rehndiyaan aankhaan
+                                    Ae takdiyaan rehndiyaan.
+                                    </p>
+                        </div>
+                       </div>
+                        <div class="col-md-4">
+                            <div class="alert alert-info col-centered">
+                                <div class="glyphicon-ring glyphicon-teal"> <span class="glyphicon glyphicon-user glyphicon-bordered"></span>
+                                </div><br>
+                                <h4>Team Leaders</h4>
+                                <p style="color:black; font-size: 15px; ">Ho Baby doll main sone di
+                                        Ho Baby doll main sone di
+                                        Ho Baby doll main sone di
+                                        Ho Baby doll main sone di
+                                        </p>
+                        </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="alert alert-info col-centered">
+                                <div class="glyphicon-ring glyphicon-teal"> <span class="glyphicon glyphicon-phone-alt glyphicon-bordered"></span>
+                                </div><br>
+                                <h4>Get in touch</h4>
+                                <p style="color:black; font-size: 15px; ">sa re ga ma pa</p>
+                            </div>
+                        </div>
+                      
+            
+           </div>       
+        </div>
+    </footer>
+
+</body>
+</html>

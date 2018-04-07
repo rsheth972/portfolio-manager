@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>HTML Dashboard</title>
+    <link rel="shortcut icon" href="{{SPLUNKWEB_URL_PREFIX}}/static/img/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="/en-US/static/@f4c1eb50e0f3/css/build/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/en-US/static/@f4c1eb50e0f3/css/build/pages/dashboard-simple-bootstrap.min.css" />
+</head>
+<body class="simplexml preload locale-en">
+<!-- 
+BEGIN LAYOUT
+This section contains the layout for the dashboard. Splunk uses proprietary
+styles in <div> tags, similar to Bootstrap's grid system. 
+-->
+<a class="navSkip" href="#navSkip" tabindex="1">Screen reader users, click here to skip the navigation bar</a>
+<div class="header splunk-header">
+    <div id="placeholder-splunk-bar">
+        <a href="{{SPLUNKWEB_URL_PREFIX}}/app/launcher/home" class="brand" title="splunk > listen to your data">splunk<strong>></strong></a>
+    </div>
+    <div id="placeholder-app-bar"></div>
+</div>
+<a id="navSkip"></a>
+<div class="dashboard-body container-fluid main-section-body" data-role="main">
+    <div class="dashboard-header clearfix">
+        <h2>HTML Dashboard</h2>
+        <p class="description">A form with radio buttons, a table, a chart, and tokens</p>
+    </div>
+
+    <!-- Replace the fieldset with this row with 3 cells -->
+    <div id="row1" class="dashboard-row dashboard-row1">
+        <div class="dashboard-cell" style="width: 25%;">
+            <div class="dashboard-panel clearfix">
+                <div class="dashboard-element">
+                    <div class="panel-head">
+                        <h3>Number of Results</h3>
+                    </div>
+                    <div class="panel-body" id="input1">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-cell" style="width: 25%;">
+            <div class="dashboard-panel clearfix">
+                <div class="dashboard-element">
+                    <div class="panel-head">
+                        <h3>Source types</h3>
+                    </div>
+                    <div class="panel-body" id="view_checkboxgroup">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- The pie chart is now in row 1, cell 3 -->
+        <div id="panel1" class="dashboard-cell" style="width: 100%;">
+            <div class="dashboard-panel clearfix">
+
+                <div class="panel-element-row">
+                    <div id="element2" class="dashboard-element chart" style="width: 100%">
+                        <div class="panel-head">
+                            <h3>Count by sourcetype</h3>
+                        </div>
+                        <div class="panel-body"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- The result table is now in row 2 -->
+    <div id="row2" class="dashboard-row dashboard-row2">
+        <div id="panel2" class="dashboard-cell" style="width: 100%;">
+            <div class="dashboard-panel clearfix">
+
+                <div class="panel-element-row">
+                    <div id="element1" class="dashboard-element table" style="width: 100%">
+                        <div class="panel-head">
+                            <h3>index=_internal $sourcetype$ | head $headcount$</h3>
+                        </div>
+                        <div class="panel-body"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="footer"></div>
+
+<!-- 
+END LAYOUT
+-->
+
+<script src="{{SPLUNKWEB_URL_PREFIX}}/config?autoload=1"></script>
+<script src="{{SPLUNKWEB_URL_PREFIX}}/static/js/i18n.js"></script>
+<script src="{{SPLUNKWEB_URL_PREFIX}}/i18ncatalog?autoload=1"></script>
+<script src="{{SPLUNKWEB_URL_PREFIX}}/static/js/build/simplexml.min/config.js"></script>
+<script type="text/javascript">
+// <![CDATA[
+require.config({
+    baseUrl: "{{SPLUNKWEB_URL_PREFIX}}/static/js",
+    waitSeconds: 0 // Disable require.js load timeout
+});
+
+//
+// LIBRARY REQUIREMENTS
+//
+// In the require function, we include the necessary libraries and modules for
+// the HTML dashboard. Then, we pass variable names for these libraries and
+// modules as function parameters, in order.
+// 
+// When you add libraries or modules, remember to retain this mapping order
+// between the library or module and its function parameter. You can do this by
+// adding to the end of these lists, as shown in the commented examples below.
+
+require([
+    "splunkjs/mvc",
+    "splunkjs/mvc/utils",
+    "splunkjs/mvc/tokenutils",
+    "underscore",
+    "jquery",
+    "splunkjs/mvc/simplexml",
+    "splunkjs/mvc/headerview",
+    "splunkjs/mvc/footerview",
+    "splunkjs/mvc/simplexml/dashboardview",
+    "splunkjs/mvc/simplexml/dashboard/panelref",
+    "splunkjs/mvc/simplexml/element/chart",
+    "splunkjs/mvc/simplexml/element/event",
+    "splunkjs/mvc/simplexml/element/html",
+    "splunkjs/mvc/simplexml/element/list",
+    "splunkjs/mvc/simplexml/element/map",
+    "splunkjs/mvc/simplexml/element/single",
+    "splunkjs/mvc/simplexml/element/table",
+    "splunkjs/mvc/simpleform/formutils",
+    "splunkjs/mvc/simplexml/eventhandler",
+    "splunkjs/mvc/simplexml/searcheventhandler",
+    "splunkjs/mvc/simpleform/input/dropdown",
+    "splunkjs/mvc/simpleform/input/radiogroup",
+    "splunkjs/mvc/simpleform/input/linklist",
+    "splunkjs/mvc/simpleform/input/multiselect",
+    "splunkjs/mvc/simpleform/input/checkboxgroup",
+    "splunkjs/mvc/simpleform/input/text",
+    "splunkjs/mvc/simpleform/input/timerange",
+    "splunkjs/mvc/simpleform/input/submit",
+    "splunkjs/mvc/searchmanager",
+    "splunkjs/mvc/savedsearchmanager",
+    "splunkjs/mvc/postprocessmanager",
+    "splunkjs/mvc/simplexml/urltokenmodel",
+    "splunkjs/mvc/checkboxgroupview"
+    ],
+    function(
+        mvc,
+        utils,
+        TokenUtils,
+        _,
+        $,
+        DashboardController,
+        HeaderView,
+        FooterView,
+        Dashboard,
+        PanelRef,
+        ChartElement,
+        EventElement,
+        HtmlElement,
+        ListElement,
+        MapElement,
+        SingleElement,
+        TableElement,
+        FormUtils,
+        EventHandler,
+        SearchEventHandler,
+        DropdownInput,
+        RadioGroupInput,
+        LinkListInput,
+        MultiSelectInput,
+        CheckboxGroupInput,
+        TextInput,
+        TimeRangeInput,
+        SubmitButton,
+        SearchManager,
+        SavedSearchManager,
+        PostProcessManager,
+        UrlTokenModel,
+        CheckboxGroupView
+        ) {
+
+        var pageLoading = true;
+
+
+        // 
+        // TOKENS
+        //
+        
+        // Create token namespaces
+        var urlTokenModel = new UrlTokenModel();
+        mvc.Components.registerInstance('url', urlTokenModel);
+        var defaultTokenModel = mvc.Components.get('default', {create: true});
+        var submittedTokenModel = mvc.Components.get('submitted', {create: true});
+
+        urlTokenModel.on('url:navigate', function() {
+            defaultTokenModel.set(urlTokenModel.toJSON());
+            if (!_.isEmpty(urlTokenModel.toJSON()) && !_.all(urlTokenModel.toJSON(), _.isUndefined)) {
+                submitTokens();
+            } else {
+                submittedTokenModel.clear();
+            }
+        });
+
+        // Initialize tokens
+        defaultTokenModel.set(urlTokenModel.toJSON());
+
+        function submitTokens() {
+            // Copy the contents of the defaultTokenModel to the submittedTokenModel and urlTokenModel
+            FormUtils.submitForm({ replaceState: pageLoading });
+        }
+
+        function setToken(name, value) {
+            defaultTokenModel.set(name, value);
+            submittedTokenModel.set(name, value);
+        }
+
+        function unsetToken(name) {
+            defaultTokenModel.unset(name);
+            submittedTokenModel.unset(name);
+        }
+
+        
+        
+        //
+        // SEARCH MANAGERS
+        //
+
+        var search1 = new SearchManager({
+            "id": "search1",
+            "cancelOnUnload": true,
+            "status_buckets": 0,
+            "search": "index=_internal $sourcetype$ | head $headcount$",
+            "latest_time": "$latest$",
+            "earliest_time": "$earliest$",
+            "app": utils.getCurrentApp(),
+            "auto_cancel": 90,
+            "preview": true,
+            "runWhenTimeIsUndefined": false
+        }, {tokens: true});
+
+        var search2 = new SearchManager({
+            "id": "search2",
+            "cancelOnUnload": true,
+            "status_buckets": 0,
+            "search": "index=_internal | stats count by sourcetype",
+            "latest_time": "$latest$",
+            "earliest_time": "$earliest$",
+            "app": utils.getCurrentApp(),
+            "auto_cancel": 90,
+            "preview": true,
+            "runWhenTimeIsUndefined": false
+        }, {tokens: true});
+
+        var search3 = new SearchManager({
+            "id": "search3",
+            "cancelOnUnload": true,
+            "status_buckets": 0,
+            "search": "index=_internal | head 1000 | top sourcetype",
+            "earliest_time": null,
+            "latest_time": null,
+            "app": utils.getCurrentApp(),
+            "auto_cancel": 90,
+            "preview": true,
+            "runWhenTimeIsUndefined": false
+        }, {tokens: true});
+
+
+
+        //
+        // SPLUNK HEADER AND FOOTER
+        //
+
+        new HeaderView({
+            id: 'header',
+            section: 'dashboards',
+            el: $('.header'),
+            acceleratedAppNav: true,
+            useSessionStorageCache: true,
+            splunkbar: true,
+            appbar: true,
+            litebar: false,
+        }, {tokens: true}).render();
+
+        new FooterView({
+            id: 'footer',
+            el: $('.footer')
+        }, {tokens: true}).render();
+
+
+        //
+        // DASHBOARD EDITOR
+        //
+
+        new Dashboard({
+            id: 'dashboard',
+            el: $('.dashboard-body'),
+            showTitle: true,
+            editable: true
+        }, {tokens: true}).render();
+
+
+        //
+        // VIEWS: VISUALIZATION ELEMENTS
+        //
+
+        var element1 = new TableElement({
+            "id": "element1",
+            "showPager": true,
+            "managerid": "search1",
+            "el": $('#element1')
+        }, {tokens: true, tokenNamespace: "submitted"}).render();
+
+        var element2 = new ChartElement({
+            "id": "element2",
+            "resizable": true,
+            "charting.chart": "pie",
+            "charting.drilldown": "none",
+            "managerid": "search2",
+            "el": $('#element2')
+        }, {tokens: true, tokenNamespace: "submitted"}).render();
+
+
+
+        //
+        // VIEWS: FORM INPUTS
+        //
+
+        var input1 = new DropdownInput({
+            "id": "input1",
+            "choices": [
+            {"value": "1", "label": "1"},
+            {"value": "2", "label": "2"},
+            {"value": "3", "label": "3"}
+            ],
+            "selectFirstChoice": false,
+            "default": "1",
+            "showClearButton": false,
+            "value": "$form.headcount$",
+            "el": $('#input1')
+        }, {tokens: true}).render();
+
+        input1.on("change", function(newValue) {
+            FormUtils.handleValueChange(input1);
+        });
+        
+        // var input2 = new RadioGroupInput({
+        //     "id": "input2",
+        //     "choices": [
+        //     {"value": "*", "label": "All"}
+        //     ],
+        //     "valueField": "sourcetype",
+        //     "labelField": "sourcetype",
+        //     "selectFirstChoice": false,
+        //     "default": "*",
+        //     "value": "$form.sourcetype$",
+        //     "managerid": "search3",
+        //     "el": $('#input2')
+        // }, {tokens: true}).render();
+
+        // input2.on("change", function(newValue) {
+        //     FormUtils.handleValueChange(input2);
+        // });
+        
+        // CheckboxGroup view
+        var view_checkboxgroup = new CheckboxGroupView({
+            id: "view_checkboxgroup",
+            "default": "splunkd",
+            "labelField": "sourcetype",
+            "valueField": "sourcetype",
+            "managerid": "search3",
+            el: $("#view_checkboxgroup")
+        }).render();
+
+        // Set the initial value of the sourcetype token to "splunkd"
+        defaultTokenModel.set("sourcetype", "splunkd");
+
+        // When the checkbox selection changes, reform the sourcetype token
+        view_checkboxgroup.on("change", function() {
+            // Form the new sourcetype string
+            var selectedsourcetypes="sourcetype=" + view_checkboxgroup.val().join(" OR sourcetype=");
+            // Set the sourcetype token value
+            defaultTokenModel.set("sourcetype", selectedsourcetypes);
+        });
+
+        // 
+        // SUBMIT FORM DATA
+        //
+
+        var submit = new SubmitButton({
+            id: 'submit',
+            el: $('#search_btn')
+        }, {tokens: true}).render();
+
+        submit.on("submit", function() {
+            submitTokens();
+        });
+
+        // Initialize time tokens to default
+        if (!defaultTokenModel.has('earliest') && !defaultTokenModel.has('latest')) {
+            defaultTokenModel.set({ earliest: '0', latest: '' });
+        }
+
+        if (!_.isEmpty(urlTokenModel.toJSON())){
+            submitTokens();
+        }
+
+
+        //
+        // DASHBOARD READY
+        //
+
+        DashboardController.ready();
+        pageLoading = false;
+
+    }
+    );
+// ]]>
+</script>
+</body>
+</html>
