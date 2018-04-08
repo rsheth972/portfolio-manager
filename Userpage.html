@@ -49,6 +49,17 @@
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+#color_odd{
+    background-color: rgb(76, 116, 196);
+    padding: 10px;
+}
+
+#color_even{
+    background-color: rgb(155, 69, 58);
+    padding: 10px;
+}
+
 </style>
 </head>
 <body>
@@ -59,34 +70,59 @@
 <ul id="navbar">
     <!--<li style="float:left; color:white;"><strong>Portfolio Manager</strong></li>-->
     <li style="float:right; white-space:pre"><a href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-out"></span>&#9;Logout</a></li>
-    <li><div onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger"></span></div>
-            </li>
+    <li><div onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger"></span></div></li>
 </ul>
 <div class="jumbotron" style="padding:10px;">
 <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <div class="tab">
-        <a href="#"  onclick="opensecurity(event, 'stock')" id="defaultOpen">Modify Stocks</a>
-        <a href="#"  class="tablinks" onclick="opensecurity(event, 'mutual_funds')">Modify Mutual funds</a>
-        <a href="#" class="tablinks" onclick="opensecurity(event, 'currency')">View Stocks</a>
-        <a href="#" class="tablinks" onclick="opensecurity(event, 'currency')">View Mutual funds</a>
+        <div class="tab">    
+        <a href="#" class="tablinks" onclick="opensecurity(event, 'portfolio')" id="defaultOpen"><span class="glyphicon glyphicon-list-alt"></span>&#9;Portfolio</a>    
+        <a href="#" class="tablinks" onclick="opensecurity(event, 'watchlist')"><span class="glyphicon glyphicon-eye-open"></span>&#9;Watchlist</a>
+        <div><span class="glyphicon glyphicon-menu-down"></span>&#9;Stocks</div>
+        <a href="#" class="tablinks" onclick="opensecurity(event, 'modify_stock')"><span class="glyphicon glyphicon-pencil"></span>&#9;Modify</a>
+        <a href="#" class="tablinks" onclick="opensecurity(event, 'view_stock')"><span class="glyphicon glyphicon-stats"></span>&#9;View</a>
+        <div><span class="glyphicon glyphicon-menu-down"></span>&#9;Mutual Funds</div>
+        <a href="#" class="tablinks" onclick="opensecurity(event, 'modify_mutualfunds')"><span class="glyphicon glyphicon-pencil"></span>&#9;Modify</a>
+        <a href="#" class="tablinks" onclick="opensecurity(event, 'view_mutualfunds')"><span class="glyphicon glyphicon-stats"></span>&#9;View</a>
+        <a href="#" class="tablinks" onclick="opensecurity(event, 'trade_currency')"><span class="glyphicon glyphicon-bitcoin"></span>&#9;Trade Currency</a>
+        <div id="defaultOpen"><span class="glyphicon glyphicon-user"></span>&#9;User</div>
       </div>
     </div>
     <div style="text-align:center">
-    <div id="stock" class="tabcontent">
+        <div class="row">
+                <div class="col-sm-2" id="color_odd">Investment</div>
+                <div class="col-sm-2" id="color_even">Today's Gain</div>
+                <div class="col-sm-2" id="color_odd">Max Gainer</div>
+                <div class="col-sm-2" id="color_even">Max Losser</div>
+                <div class="col-sm-2" id="color_odd">Overall Gain</div>
+                <div class="col-sm-2" id="color_even">Overall Networth</div>
+        </div>
+
+        <div id="modify_stock" class="tabcontent">
             <h3>Modify stock</h3>
-            <p>Stocks are bull shit</p>
+            <p>Modify Table/Row</p>
           </div>
           
-          <div id="mutual_funds" class="tabcontent">
+          <div id="view_stock" class="tabcontent">
+                <h3>View stock</h3>
+                <p>View Table</p>
+              </div>
+
+          <div id="modify_mutualfunds" class="tabcontent">
             <h3>Modify Mutual funds</h3>
-            <p>Mutual funds are subject to market risks</p> 
+            <p>Mutual funds are subject to market risks. Modify Row</p> 
           </div>
           
-          <div id="currency" class="tabcontent">
+          <div id="view_mutualfunds" class="tabcontent">
+                <h3>View MF</h3>
+                <p>View Table</p>
+              </div>
+
+          <div id="trade_currency" class="tabcontent">
             <h3>currency</h3>
             <p>Apna rupaiya sab pe bhari</p>
           </div>
+          
         </div>
       <div class="jumbotron" style="margin-top:80px" >
             <div class="row">
