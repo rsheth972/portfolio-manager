@@ -162,11 +162,13 @@
                             <div class="glyphicon-ring glyphicon-teal" style="align-items: center"> <span class="glyphicon glyphicon-envelope glyphicon-bordered"></span>
                             </div><br>
                             <h4>Address</h4>
-                            <p style="color:black; font-size: 15px; ">Sone sone patole lakhaan
-                                    Sone sone patole yeah…
-                                    Ae takdiyaan rehndiyaan aankhaan
-                                    Ae takdiyaan rehndiyaan.
-                                    </p>
+                            <div id="map" style="width:365px;height:300px;background:white"></div>
+                            <p style="color:black; font-size: 15px; ">Bharatiya Vidya Bhavan's
+                                Sardar Patel Institute of Technology,
+                                Bhavans Campus, Munshi Nagar, 
+                                Andheri (West), Mumbai,
+                                Maharashtra 400058.
+                            </p>
                         </div>
                        </div>
                         <div class="col-md-4">
@@ -194,6 +196,22 @@
            </div>       
         </div>
     </footer>
+
+    <script>
+        function myMap() {
+          var mapCanvas = document.getElementById("map");
+          var myCenter = new google.maps.LatLng(19.1231971,72.836133); 
+          var mapOptions = {center: myCenter, zoom: 17};
+          var map = new google.maps.Map(mapCanvas,mapOptions);
+          var marker = new google.maps.Marker({
+            position: myCenter,
+            animation: google.maps.Animation.BOUNCE
+          });
+          marker.setMap(map);
+        }
+ </script>       
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ8k5YV_dl3_c4EmjRiiYRQ4H22BPFvFk&callback=myMap" type="text/javascript">
+</script>
 
 </body>
 </html>
