@@ -16,7 +16,7 @@
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: rgb(163, 171, 187);
+    background-color: rgb(232, 232, 238);
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -70,34 +70,53 @@
 <ul id="navbar">
     <!--<li style="float:left; color:white;"><strong>Portfolio Manager</strong></li>-->
     <li style="float:right; white-space:pre"><a href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-out"></span>&#9;Logout</a></li>
-    <li><div onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger"></span></div></li>
+    <li style="float:left; white-space:pre"><a href="#" onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger" ></span>&#9;Menu</a></li>
+    <li style="float:left; white-space:pre"><a href="#tabled" >Home</a></li>
+    <li style="float:left; white-space:pre"><a href="#" >Settings</a></li>
 </ul>
 <div class="jumbotron" style="padding:10px;">
 <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#" onclick="closeNav()" style="float:right; ">&times;</a>
         <div class="tab">    
-        <a href="#" class="tablinks" onclick="opensecurity(event, 'portfolio')" id="defaultOpen"><span class="glyphicon glyphicon-list-alt"></span>&#9;Portfolio</a>    
-        <a href="#" class="tablinks" onclick="opensecurity(event, 'watchlist')"><span class="glyphicon glyphicon-eye-open"></span>&#9;Watchlist</a>
-        <div><span class="glyphicon glyphicon-menu-down"></span>&#9;Stocks</div>
-        <a href="#" class="tablinks" onclick="opensecurity(event, 'modify_stock')"><span class="glyphicon glyphicon-pencil"></span>&#9;Modify</a>
-        <a href="#" class="tablinks" onclick="opensecurity(event, 'view_stock')"><span class="glyphicon glyphicon-stats"></span>&#9;View</a>
-        <div><span class="glyphicon glyphicon-menu-down"></span>&#9;Mutual Funds</div>
-        <a href="#" class="tablinks" onclick="opensecurity(event, 'modify_mutualfunds')"><span class="glyphicon glyphicon-pencil"></span>&#9;Modify</a>
-        <a href="#" class="tablinks" onclick="opensecurity(event, 'view_mutualfunds')"><span class="glyphicon glyphicon-stats"></span>&#9;View</a>
-        <a href="#" class="tablinks" onclick="opensecurity(event, 'trade_currency')"><span class="glyphicon glyphicon-bitcoin"></span>&#9;Trade Currency</a>
-        <div id="defaultOpen"><span class="glyphicon glyphicon-user"></span>&#9;User</div>
-      </div>
-    </div>
-    <div style="text-align:center">
-        <div class="row">
-                <div class="col-sm-2" id="color_odd">Investment</div>
-                <div class="col-sm-2" id="color_even">Today's Gain</div>
-                <div class="col-sm-2" id="color_odd">Max Gainer</div>
-                <div class="col-sm-2" id="color_even">Max Losser</div>
-                <div class="col-sm-2" id="color_odd">Overall Gain</div>
-                <div class="col-sm-2" id="color_even">Overall Networth</div>
+            <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'portfolio')" id="defaultOpen"><span class="glyphicon glyphicon-list-alt"></span>&#9;Portfolio</button>
+        <div class="dropdown">
+            <button class="btn btn-primary btn-lg dropdown-toggle" type="button" style="width: 94.5%; margin: 5px;" data-toggle="dropdown" style="width: 100%">Stocks
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href="#" class="tablinks" onclick="opensecurity(event, 'modify_stock')"><span class="glyphicon glyphicon-pencil"></span>&#9;Modify</a></li>
+              <li> <a href="#" class="tablinks" onclick="opensecurity(event, 'view_stock')"><span class="glyphicon glyphicon-stats"></span>&#9;View</a></li>
+            </ul>
+          </div>
+        <div class="dropdown">
+            <button class="btn btn-primary btn-lg dropdown-toggle" type="button" style="width: 94.5%; margin: 5px;" data-toggle="dropdown">Mutual Funds
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href="#" class="tablinks" onclick="opensecurity(event, 'modify_mutualfunds')"><span class="glyphicon glyphicon-pencil"></span>&#9;Modify</a></li>
+              <li><a href="#" class="tablinks" onclick="opensecurity(event, 'view_mutualfunds')"><span class="glyphicon glyphicon-stats"></span>&#9;View</a></li>
+              <li><a href="#" class="tablinks" onclick="opensecurity(event, 'trade_currency')"><span class="glyphicon glyphicon-bitcoin"></span>&#9;Trade Currency</a></li>
+            </ul>
+          </div>
+          <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'watchlist')"><span class="glyphicon glyphicon-eye-open"></span>&#9;Watchlist</a>
+        <button class="btn btn-primary btn-lg" type="button"  style="width: 94.5%; margin: 5px;"><div id="defaultOpen"><span class="glyphicon glyphicon-user"></span>&#9;User</div>
         </div>
+       </div>
+    </div>
+    
+  
+        <table id="tabled">
+        <tr>
+                <td id="color_odd">Investment</td>
+                <td id="color_even">Today's Gain</td>
+                <td id="color_odd">Max Gainer</td>
+        </tr>
+            <tr>
+                <td id="color_even">Max Losser</div>
+                <td id="color_odd">Overall Gain</div>
+                <td id="color_even">Overall Networth</div>
+                </tr>
+    </table>
 
+        <div style="text-align:center">
         <div id="modify_stock" class="tabcontent">
             <h3>Modify stock</h3>
             <p>Modify Table/Row</p>
@@ -124,6 +143,7 @@
           </div>
           
         </div>
+    
       <div class="jumbotron" style="margin-top:80px" >
             <div class="row">
                     <div class="col-md-4">
