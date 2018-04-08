@@ -2,7 +2,9 @@
 body {
     font-size: 20px;
 }
-
+.prof {
+  border-radius: 50%;
+}
 .header{
     background-color: rgb(10, 20, 77);
     color:white;
