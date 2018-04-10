@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="AmplifyPortfolio.css">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
 
 </head>
 <body>
@@ -72,10 +77,9 @@
               </div>
               <div class="col-sm-4"> 
                 <p>Project 2</p>
-                <p style="font-size: 14px">me pak gaya hu yeh sab kar ke abhi rohit tu isme kachra bhar dena muje kuch mil nahi raha hai daal ne ko.
-                me pak gaya hu yeh sab kar ke abhi rohit tu isme kachra bhar dena muje kuch mil nahi raha hai daal ne ko.
-                me pak gaya hu yeh sab kar ke abhi rohit tu isme kachra bhar dena muje kuch mil nahi raha hai daal ne ko.
-                me pak gaya hu yeh sab kar ke abhi rohit tu isme kachra bhar dena muje kuch mil nahi raha hai daal ne ko</p>
+                <p style="font-size: 14px">
+					<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                </p>
     
               </div>
               <div class="col-sm-4">
@@ -229,6 +233,62 @@
  </script>       
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ8k5YV_dl3_c4EmjRiiYRQ4H22BPFvFk&callback=myMap" type="text/javascript">
 </script>
+
+	<script >
+		Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Browser market shares January, 2015 to May, 2015'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+            name: 'IE',
+            y: 56.33
+        }, {
+            name: 'Chrome',
+            y: 24.03,
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Firefox',
+            y: 10.38
+        }, {
+            name: 'Safari',
+            y: 4.77
+        }, {
+            name: 'Opera',
+            y: 0.91
+        }, {
+            name: 'Other',
+            y: 0.2
+        }]
+    }]
+});
+	</script>
+
 
 </body>
 </html>
