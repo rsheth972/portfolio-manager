@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <link rel="stylesheet" type="text/css" href="AmplifyPortfolio.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
@@ -24,7 +26,6 @@
     padding-top: 60px;
     z-index: 11;
 }
-
 .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
@@ -33,12 +34,10 @@
     display: block;
     transition: 0.3s;
 }
-
 .sidenav a:hover {
     color: #030107;
     background-color: rgb(46, 69, 196);
 }
-
 .sidenav .closebtn {
     position: absolute;
     top: 0;
@@ -46,22 +45,18 @@
     font-size: 36px;
     margin-left: 50px;
 }
-
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
-
 #color_odd{
     background-color: rgb(49, 179, 70);
     padding: 10px;
 }
-
 #color_even{
     background-color: rgb(66, 183, 212);
     padding: 10px;
 }
-
 </style>
 </head>
 <body>
@@ -120,6 +115,12 @@
     </table>
 
         <div style="text-align:center">
+        
+        <div id="portfolio" class="tabcontent">
+            <h3>Total Portfolio</h3>
+            <div id="chart-container" style="height: 500px; width: 100%;"></div>
+          </div>
+        
         <div id="modify_stock" class="tabcontent">
             <h3>Modify stock</h3>
             <p>Modify Table/Row</p>
@@ -176,7 +177,6 @@
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
 }
-
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
@@ -196,5 +196,45 @@ function opensecurity(evt, securityName) {
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
             </script>
+            
+    <script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chart-container", {
+	exportEnabled: true,
+	animationEnabled: true,
+	//title:{
+	//	text: "State Operating Funds"
+	//},
+	legend:{
+		cursor: "pointer",
+		itemclick: explodePie
+	},
+	data: [{
+		type: "pie",
+		showInLegend: true,
+		toolTipContent: "{name}: <strong>{y}%</strong>",
+		indexLabel: "{name} - {y}%",
+		dataPoints: [
+			{ y: 75, name: "Stocks", exploded: true },
+			{ y: 20, name: "Mutual fund" },
+			{ y: 5, name: "Currency" },
+		]
+	}]
+});
+chart.render();
+}
+
+function explodePie (e) {
+	if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded)
+	{
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+	} else {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+	}
+	e.chart.render();
+}
+</script>       
+            
 </body>
 </html>
