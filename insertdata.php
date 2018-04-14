@@ -17,12 +17,15 @@ echo "Connected successfully";
     if(isset($_POST['add']))
 		{echo "Connected jfkfjytfkytfkuyg successfully";
 
-            $check = "SELECT COUNT(*) FROM stocks WHERE ssym = ".$_POST['ssym']." AND uname = ".$_POST['uname']."";
-            $result = mysqli_query($conn, $check);
+            $check = "SELECT COUNT(*) FROM stocks WHERE stocks.ssym = ".$_POST['ssym']." AND stocks.uname = ".$_POST['uname'].";";
+            $result = mysqli_query($conn, "SELECT COUNT(*) FROM stocks WHERE stocks.ssym = ".$_POST['ssym']." AND stocks.uname = ".$_POST['uname'].";");
+            $row_cnt = mysqli_num_rows($result);
+            printf("Result set has %d rows.\n", $row_cnt);
             echo "Connected by query<br>";
-            if(mysqli_num_rows($result)>0)
+            $result=1;
+            if(mysqli_num_rows($result))
             {
-                echo "Connected by present<br>";
+                echo "Connected by <br>";
                 $sql = "SELECT qty, rate FROM stocks WHERE stocks.ssym = ".$_POST['ssym']." AND stocks.uname = ".$_POST['uname']."";
                 $result1 = mysqli_query($conn, $sql);
                 $qty = ".$_POST[qty].";
@@ -42,18 +45,21 @@ echo "Connected successfully";
                 
             } 
             else {
-                $sql2 = "INSERT INTO stocks VALUES('".$_POST['uname']."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$_POST['total'].")";
-                mysqli_query($conn, $sql2);
-                if (mysqli_query($conn, $sql2)) {
+                $sql = "INSERT INTO stocks VALUES('".$_POST['uname']."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$_POST['total'].")";
+        if (mysqli_query($conn, $sql)) {
             echo "Record updated successfully";
         } else {
             echo "Error updating record: new insertion<br> " . mysqli_error($conn);
         }
 		
             }
-
+            $sql3 = "INSERT INTO transactionb(uname, ssym,qty,rate,total,bdate) VALUES
+		('".$_POST['uname']."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$_POST['total'].",'".$_POST['bdate']."')";
+		
+		mysqli_query($conn,$sql3);
             }
 		
+		echo "agc";
 		mysqli_close($conn);
 
 }
