@@ -150,11 +150,17 @@
         <div class="loginmodal-container".
 >
         <h3>Create Your Account</h3><br>
-        <form>
+        <form action="insertuser.php" method="post">
         <input type="text" name="uname" placeholder="Create Username" required="required">
         <input type="text" name="name" placeholder="Your Name" required="required">
         <input type="text" name="address" placeholder="Address" required="required">
-        <input type="submit" name="Next" class="login loginmodal-submit" data-toggle="modal" data-target="#next" value="Next ->">
+        <input type="text" name="aadhar" placeholder="Aadhar card no." required="required">
+        <input type="text" name="pan" placeholder="Pan card no." required="required">
+        <input type="text" name="mob" placeholder="Mobile no." required="required">
+        <input type="email" name="email" placeholder="Email address" required="required">
+        <input type="date" name="dob" placeholder="Enter your birthday" required="required">
+        <input type="password" name="pwd" placeholder="Create a Password" required="required">
+        <input type="submit" name="register" class="login loginmodal-submit" value="Register">
         </form>
     </div>
     </div>
