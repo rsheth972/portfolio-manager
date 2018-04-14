@@ -138,7 +138,7 @@
 				/*$stock=$_REQUEST['search'];
                 $stock='/'.$stock.'/';*/
                 $stock='/APP/';
-                $ch = fopen("ind_nifty500list.csv", "r");
+                $ch = fopen("NSE.csv", "r");
                 while($row = fgetcsv($ch)) {
                     if (preg_match($stock, $row = implode(' | ', $row))) {
                         echo '<div>' . $row . ' </div>';
