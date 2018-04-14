@@ -194,8 +194,8 @@
                     }
                     </script> -->
     
-   <?php
-  /*  $servername = "localhost";
+   <?php /*
+    $servername = "localhost";
     $username = "username";
     $password = "password";
     $dbname = "myDB";
@@ -221,9 +221,17 @@
         echo "0 results";
     }
     
-    $conn->close();*/
+    $conn->close(); */
     ?> 
-                    
+              <form action="insertdata.php" method="post">
+                <input type="text" name="uname">
+                <input type="text" name="ssym"> 
+                <input type="number" name="qty">
+                <input type="number" name="rate">
+                <input type="number" name="total" value="total">
+                <input type="submit" name="add" value="add">
+              </form>
+
               </div>
 
           <div id="mutual_funds" class="tabcontent">
