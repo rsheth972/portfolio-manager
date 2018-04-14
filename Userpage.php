@@ -184,8 +184,8 @@ $sql = "SELECT ssym, qty, rate, total FROM stocks;
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
-    echo "<table><tr><th>Stock</th><th>Qty</th><th>Rate</th><th>Total</th></tr>";
-    // output data of each row
+    echo "<table><tr><th>Stock</th><th>Qty</th><th>Rate</th><th>Total</th></tr>"; 
+
     while($row = mysqli_fetch_assoc($result)) {
         echo "<tr><td>" . $row["ssym"]. "</td><td>" . $row["qty"]. "</td><td> " . $row["rate"]. "</td><td> " . $row["total"]. "</td></tr>";
     }
