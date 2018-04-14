@@ -166,83 +166,37 @@ header("location: index.php"); // Redirecting To Home Page
             </div>
                 
                 <p>View Table</p>
-                <!--
-                <form>
-                <input type="button" value="Generate Table" onclick="GenerateTable()">
-                </input>
-                </form>
-                <div id="dvTable">
-                </div>
-                
-                <script type="text/javascript">
-                    function GenerateTable() {
-                        //Build an array containing Customer records.
-                        var customers = new Array();
-                        customers.push(["Customer Id", "Name", "Country"]);
-                        customers.push([1, "John Hammond", "United States"]);
-                        customers.push([2, "Mudassar Khan", "India"]);
-                        customers.push([3, "Suzanne Mathews", "France"]);
-                        customers.push([4, "Robert Schidner", "Russia"]);
-                     
-                        //Create a HTML Table element.
-                        var table = document.createElement("TABLE");
-                        table.border = "1";
-                     
-                        //Get the count of columns.
-                        var columnCount = customers[0].length;
-                     
-                        //Add the header row.
-                        var row = table.insertRow(-1);
-                        for (var i = 0; i < columnCount; i++) {
-                            var headerCell = document.createElement("TH");
-                            headerCell.innerHTML = customers[0][i];
-                            row.appendChild(headerCell);
-                        }
-                     
-                        //Add the data rows.
-                        for (var i = 1; i < customers.length; i++) {
-                            row = table.insertRow(-1);
-                            for (var j = 0; j < columnCount; j++) {
-                                var cell = row.insertCell(-1);
-                                cell.innerHTML = customers[i][j];
-                            }
-                        }
-                     
-                        var dvTable = document.getElementById("dvTable");
-                        dvTable.innerHTML = "";
-                        dvTable.appendChild(table);
-                    }
-                    </script> -->
     
-   <?php /*
+   <?php 
     $servername = "localhost";
-    $username = "username";
-    $password = "password";
-    $dbname = "myDB";
+    $username = "root";
+    $password = "";
+    $db="project";
 
     // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    } 
-    
-    $sql = "SELECT id, firstname, lastname FROM MyGuests";
-    $result = $conn->query($sql);
-    
-    if ($result->num_rows > 0) {
-        echo "<table ><tr><th>ID</th><th>Name</th><th>Qty</th></tr>";
-        // output data of each row
-        while($row = $result->fetch_assoc()) {
-            echo "<tr><td>" . $row["id"]. "</td><td>" . $row["firstname"]. "</td><td> " . $row["lastname"]. "</td></tr>";
-        }
-        echo "</table>";
-    } else {
-        echo "0 results";
+$conn = mysqli_connect($servername, $username, $password, $db);
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$sql = "SELECT ssym, qty, rate, total FROM stocks;
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+    echo "<table><tr><th>Stock</th><th>Qty</th><th>Rate</th><th>Total</th></tr>";
+    // output data of each row
+    while($row = mysqli_fetch_assoc($result)) {
+        echo "<tr><td>" . $row["ssym"]. "</td><td>" . $row["qty"]. "</td><td> " . $row["rate"]. "</td><td> " . $row["total"]. "</td></tr>";
     }
-    
-    $conn->close(); */
-    ?> 
+} else {
+    echo "0 results";
+}
+
+mysqli_close($conn);
+
+?>
+
               <form action="insertdata.php" method="post">
                 <input type="text" name="uname">
                 <input type="text" name="ssym"> 
