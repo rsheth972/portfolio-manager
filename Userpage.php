@@ -57,7 +57,13 @@
     background-color: rgb(66, 183, 212);
     padding: 10px;
 }
+
+#tab_echo{
+    border: 2px black;
+}
+
 </style>
+
 </head>
 <body>
 
@@ -74,10 +80,10 @@
 </ul>
 <div class="jumbotron" style="padding:10px;">
 <div id="mySidenav" class="sidenav">
-        <a href="#" onclick="closeNav()" style="float:right; ">&times;</a>
+        <a href="#" onclick="closeNav()" style="float:right;">X</a>
         <div class="tab">    
             <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'portfolio')" id="defaultOpen"><span class="glyphicon glyphicon-list-alt"></span>&#9;Portfolio</button>
-        <div class="dropdown">
+        <!--div class="dropdown">
             <button class="btn btn-primary btn-lg dropdown-toggle" type="button" style="width: 94.5%; margin: 5px;" data-toggle="dropdown" style="width: 100%">Stocks
             <span class="caret"></span></button>
             <ul class="dropdown-menu">
@@ -92,11 +98,13 @@
               <li><a href="#" class="tablinks" onclick="opensecurity(event, 'modify_mutualfunds')"><span class="glyphicon glyphicon-pencil"></span>&#9;Modify</a></li>
               <li><a href="#" class="tablinks" onclick="opensecurity(event, 'view_mutualfunds')"><span class="glyphicon glyphicon-stats"></span>&#9;View</a></li>
             </ul>
-          </div>
+          </div-->
+          <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'stocks')"><span class="glyphicon glyphicon-stats"></span>&#9;Stocks
+          <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'mutual_funds')"><span class="glyphicon glyphicon-signal"></span>&#9;Mutual Funds
           <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'trade_currency')"><span class="glyphicon glyphicon-bitcoin"></span>&#9;Trade Currency
           <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'watchlist')"><span class="glyphicon glyphicon-eye-open"></span>&#9;Watchlist
-          <button class="btn btn-primary btn-lg" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'transaction')"><span class="glyphicon glyphicon-lock"></span>&#9;Transaction
-          <button class="btn btn-primary btn-lg" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'user')"><span class="glyphicon glyphicon-user"></span>&#9;User
+          <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'transaction')"><span class="glyphicon glyphicon-lock"></span>&#9;Transaction
+          <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'user')"><span class="glyphicon glyphicon-user"></span>&#9;User
         </div>
        </div>
     </div>
@@ -121,27 +129,108 @@
             <h3>Total Portfolio</h3>
             <div id="chart-container" style="height: 500px; width: 100%;"></div>
           </div>
-        
-        <div id="modify_stock" class="tabcontent">
-            <h3>Modify stock</h3>
-            <p>Modify Table/Row</p>
-          </div>
           
-          <div id="view_stock" class="tabcontent">
+          <div id="stocks" class="tabcontent">
                 <h3>View stock</h3>
+                <input type='text' name='search'>
+                <button type="submit">Submit</button>
+                <?php
+				/*$stock=$_REQUEST['search'];
+                $stock='/'.$stock.'/';*/
+                $stock='/APP/';
+                $ch = fopen("ind_nifty500list.csv", "r");
+                while($row = fgetcsv($ch)) {
+                    if (preg_match($stock, $row = implode(' | ', $row))) {
+                        echo '<div>' . $row . ' </div>';
+                    }
+                }
+                ?>
                 <p>View Table</p>
+                <!--
+                <form>
+                <input type="button" value="Generate Table" onclick="GenerateTable()">
+                </input>
+                </form>
+                <div id="dvTable">
+                </div>
+                
+                <script type="text/javascript">
+                    function GenerateTable() {
+                        //Build an array containing Customer records.
+                        var customers = new Array();
+                        customers.push(["Customer Id", "Name", "Country"]);
+                        customers.push([1, "John Hammond", "United States"]);
+                        customers.push([2, "Mudassar Khan", "India"]);
+                        customers.push([3, "Suzanne Mathews", "France"]);
+                        customers.push([4, "Robert Schidner", "Russia"]);
+                     
+                        //Create a HTML Table element.
+                        var table = document.createElement("TABLE");
+                        table.border = "1";
+                     
+                        //Get the count of columns.
+                        var columnCount = customers[0].length;
+                     
+                        //Add the header row.
+                        var row = table.insertRow(-1);
+                        for (var i = 0; i < columnCount; i++) {
+                            var headerCell = document.createElement("TH");
+                            headerCell.innerHTML = customers[0][i];
+                            row.appendChild(headerCell);
+                        }
+                     
+                        //Add the data rows.
+                        for (var i = 1; i < customers.length; i++) {
+                            row = table.insertRow(-1);
+                            for (var j = 0; j < columnCount; j++) {
+                                var cell = row.insertCell(-1);
+                                cell.innerHTML = customers[i][j];
+                            }
+                        }
+                     
+                        var dvTable = document.getElementById("dvTable");
+                        dvTable.innerHTML = "";
+                        dvTable.appendChild(table);
+                    }
+                    </script> -->
+    
+   <?php
+  /*  $servername = "localhost";
+    $username = "username";
+    $password = "password";
+    $dbname = "myDB";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } 
+    
+    $sql = "SELECT id, firstname, lastname FROM MyGuests";
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        echo "<table ><tr><th>ID</th><th>Name</th><th>Qty</th></tr>";
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+            echo "<tr><td>" . $row["id"]. "</td><td>" . $row["firstname"]. "</td><td> " . $row["lastname"]. "</td></tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "0 results";
+    }
+    
+    $conn->close();*/
+    ?> 
+                    
               </div>
 
-          <div id="modify_mutualfunds" class="tabcontent">
+          <div id="mutual_funds" class="tabcontent">
             <h3>Modify Mutual funds</h3>
             <p>Mutual funds are subject to market risks. Modify Row</p> 
           </div>
           
-          <div id="view_mutualfunds" class="tabcontent">
-                <h3>View MF</h3>
-                <p>View Table</p>
-              </div>
-
           <div id="trade_currency" class="tabcontent">
             <h3>currency</h3>
             <p>Apna rupaiya sab pe bhari</p>

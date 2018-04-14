@@ -63,8 +63,8 @@
           <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
-    </div>
-
+	</div>
+	
     <div class="container text-center">    
             <h3 style="text-align: left"><strong>What We Do</strong></h3><br>
             <div class="row">
@@ -165,22 +165,7 @@
     </div>
     </div>
     </div>
-    <div class="modal fade" id="next" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-            <div class="modal-dialog">
-            <div class="loginmodal-container">
-              <h3>Create your Account</h3><h4>Page 2</h4><br>
-              <form>
-                    <input type="text" name="aadhar" placeholder="Aadhar card no." required="required">
-                    <input type="text" name="pan" placeholder="Pan card no." required="required">
-                    <input type="text" name="mob" placeholder="Mobile no." required="required">
-                    <input type="email" name="email" placeholder="Email address" required="required">
-                    <input type="date" name="dob" placeholder="Enter your birthday" required="required">
-                    <input type="password" name="pwd" placeholder="Create a Password" required="required">
-                    <input type="submit" name="Register" class="login loginmodal-submit" value="Register">
-              </form>
-            </div>
-          </div>
-          </div>
+ 
     <footer>
         <div class="jumbotron" style="margin-top:80px" id="contact">
             <div style = "color:rgb(46, 69, 196); font-weight:bolder; "><u>Contact Us</u>
@@ -226,15 +211,7 @@
                                 <span class="glyphicon glyphicon-envelope">&#9;<strong>portfolioking@spit.ac.in</strong></span><br><br><br>
                                 <span class="glyphicon glyphicon-phone">&#9;<strong>022-87654321</strong></span><br><br><br>
                                 <span class="glyphicon glyphicon-comment">&#9;<a href="mailto:mukund.0608@gmail.com?subject=Reason%20To%20Contact%20Amplify%20Portfolio%20" target="_blank"><strong>Leave a comment</strong></a></span><br><br>
-                                <!--<img  class="prof" src="Rahil.JPG" alt="Avatar" style="width:100px; height: 100px;">
-                                <p style="color:black; font-size: 15px; "><strong>Rahil</strong><br>
-                                  <span class="glyphicon glyphicon-earphone"></span>7506543219<br></p> 
-                                  <img   class="prof" src="Mukund.jpg" alt="Avatar" style="width:100px; height: 100px;">
-                                <p style="color:black; font-size: 15px; "><strong>Mukund</strong><br>
-                                  <span class="glyphicon glyphicon-earphone"></span>  9930010115<br></p>
-                                  <img   class="prof" src="Rohit.jpg" alt="Avatar" style="width:100px; height: 100px;">
-                                <p style="color:black; font-size: 15px; "><strong>Rohit</strong><br>
-                                  <span class="glyphicon glyphicon-earphone"></span>  8097648323<br></p>-->
+                                
                                 </p>
                             </div>
                         </div>
