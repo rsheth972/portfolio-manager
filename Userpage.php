@@ -84,13 +84,16 @@ header("location: index.php"); // Redirecting To Home Page
     <li style="float:right; white-space:pre"><a href="http://localhost/logout.php" ><span class="glyphicon glyphicon-log-out"></span>&#9;Logout</a></li>
     <li style="float:left; white-space:pre"><a href="#" onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger" ></span>&#9;Menu</a></li>
     <li style="float:left; white-space:pre"><a href="#top" >Home</a></li>
+    
     <li style="float:left; white-space:pre"><a href="https://economictimes.indiatimes.com/" target="_blank">News</a></li>
-    <!--li style="float:left; white-space:pre"><a href="#" >Settings</a></li-->
+    <!-- <li style="float:right; white-space:pre"><a href="#"></a></li>
+    li style="float:left; white-space:pre"><a href="#" >Settings</a></li -->
 </ul>
 <div class="jumbotron" style="padding:10px;">
 <div id="mySidenav" class="sidenav">
         <a href="#" onclick="closeNav()" style="float:right;">X</a>
         <div class="tab">    
+            
             <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'portfolio')" id="defaultOpen"><span class="glyphicon glyphicon-list-alt"></span>&#9;Portfolio</button>
         <!--div class="dropdown">
             <button class="btn btn-primary btn-lg dropdown-toggle" type="button" style="width: 94.5%; margin: 5px;" data-toggle="dropdown" style="width: 100%">Stocks
@@ -113,12 +116,12 @@ header("location: index.php"); // Redirecting To Home Page
           <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'trade_currency')"><span class="glyphicon glyphicon-bitcoin"></span>&#9;Trade Currency
           <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'watchlist')"><span class="glyphicon glyphicon-eye-open"></span>&#9;Watchlist
           <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'transaction')"><span class="glyphicon glyphicon-lock"></span>&#9;Transaction
-          <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'user')"><span class="glyphicon glyphicon-user"></span>&#9;User
+          <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'user')"><span class="glyphicon glyphicon-user"></span>&#9;<?php echo $_SESSION['login_user'];?>
         </div>
        </div>
     </div>
     
-  
+  <div style="float:right;"><?php echo "Logged in as:".$_SESSION['login_user'];?><br><br></div>
         <table id="tabled">
         <tr>
                 <th id="color_odd">Investment<br><p style="font-size:0.9em; font-weight: normal;">Data</p></th>
@@ -197,14 +200,14 @@ if (mysqli_num_rows($result) > 0) {
 mysqli_close($conn);
 
 ?>
-
+                <h3>Add Stocks</h3>
               <form action="insertdata.php" method="post">
-                <input type="text" name="uname">
-                <input type="text" name="ssym"> 
-                <input type="number" name="qty">
-                <input type="number" name="rate">
-                <input type="number" name="total" value="total">
-                <input type="date" name="bdate">
+                UserName:<input type="text" name="uname"><br>
+                Symbol:<input type="text" name="ssym"><br>
+                QTY:<input type="number" name="qty"><br>
+                Rate:<input type="number" name="rate"><br>
+                Total:<input type="number" name="total" value=qty*rate><br>
+                Buy Date:<input type="date" name="bdate"><br>
                 <input type="submit" name="add" value="add">
               </form>
 
