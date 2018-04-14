@@ -180,7 +180,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "SELECT ssym, qty, rate, total FROM stocks;
+$sql = "SELECT ssym, qty, rate, total FROM stocks ;";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
@@ -189,6 +189,7 @@ if (mysqli_num_rows($result) > 0) {
     while($row = mysqli_fetch_assoc($result)) {
         echo "<tr><td>" . $row["ssym"]. "</td><td>" . $row["qty"]. "</td><td> " . $row["rate"]. "</td><td> " . $row["total"]. "</td></tr>";
     }
+    echo "</table>";
 } else {
     echo "0 results";
 }
@@ -203,6 +204,7 @@ mysqli_close($conn);
                 <input type="number" name="qty">
                 <input type="number" name="rate">
                 <input type="number" name="total" value="total">
+                <input type="date" name="bdate">
                 <input type="submit" name="add" value="add">
               </form>
 
