@@ -131,7 +131,7 @@
         <div class="modal-dialog">
         <div class="loginmodal-container">
           <h1>Login to Your Account</h1><br>
-          <form>
+          <form action="http://localhost/login.php" method="post">
           <input type="text" name="uname" placeholder="Username">
           <input type="password" name="pwd" placeholder="Password">
           <input type="submit" name="login" class="login loginmodal-submit" value="Login">

@@ -1,5 +1,14 @@
 
 <!DOCTYPE html>
+<?php
+include('session.php');
+if(!isset($_SESSION['login_user']))
+{
+header("location: index.php"); // Redirecting To Home Page
+}
+
+?>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -72,7 +81,7 @@
 </div>
 <ul id="navbar">
     <!--<li style="float:left; color:white;"><strong>Portfolio Manager</strong></li>-->
-    <li style="float:right; white-space:pre"><a href="Homepage.html" ><span class="glyphicon glyphicon-log-out"></span>&#9;Logout</a></li>
+    <li style="float:right; white-space:pre"><a href="http://localhost/logout.php" ><span class="glyphicon glyphicon-log-out"></span>&#9;Logout</a></li>
     <li style="float:left; white-space:pre"><a href="#" onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger" ></span>&#9;Menu</a></li>
     <li style="float:left; white-space:pre"><a href="#top" >Home</a></li>
     <li style="float:left; white-space:pre"><a href="https://economictimes.indiatimes.com/" target="_blank">News</a></li>
@@ -132,8 +141,14 @@
           
           <div id="stocks" class="tabcontent">
                 <h3>View stock</h3>
+                <div class="container">
                 <input type='text' name='search'>
                 <button type="submit">Submit</button>
+                <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu"><br>
+                <span style="float:center;">
                 <?php
 				/*$stock=$_REQUEST['search'];
                 $stock='/'.$stock.'/';*/
@@ -141,10 +156,15 @@
                 $ch = fopen("NSE.csv", "r");
                 while($row = fgetcsv($ch)) {
                     if (preg_match($stock, $row = implode(' | ', $row))) {
-                        echo '<div>' . $row . ' </div>';
+                        echo '<li>' . $row . ' </li><br>';
                     }
                 }
                 ?>
+                </span>
+                </ul>
+            </div>
+            </div>
+                
                 <p>View Table</p>
                 <!--
                 <form>
