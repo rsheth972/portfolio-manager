@@ -207,7 +207,6 @@ mysqli_close($conn);
                 <input type="date" name="bdate">
                 <input type="submit" name="add" value="add">
               </form>
-
               </div>
 
           <div id="mutual_funds" class="tabcontent">
