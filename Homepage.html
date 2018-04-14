@@ -24,7 +24,7 @@
     <li style="float:right"><a href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     <li><a href="#contact">Contact</a></li>
     <li ><a class="active" href="#top">Home</a></li>
-    <li ><a href="#news">News</a></li>
+    <li ><a href="https://economictimes.indiatimes.com/">News</a></li>
 </ul>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -132,13 +132,13 @@
         <div class="loginmodal-container">
           <h1>Login to Your Account</h1><br>
           <form>
-          <input type="text" name="user" placeholder="Username">
-          <input type="password" name="pass" placeholder="Password">
+          <input type="text" name="uname" placeholder="Username">
+          <input type="password" name="pwd" placeholder="Password">
           <input type="submit" name="login" class="login loginmodal-submit" value="Login">
           </form>
           
           <div class="login-help">
-            <a href="#" data-toggle="modal" data-target="#signup-modal"><h5>Register</h5></a> - <a href="#"><h5>Forgot Password</h5></a>
+            <a href="#" data-toggle="modal" data-target="#signup-modal"><h5>Register</h5></a>
           </div>
         </div>
     </div>
@@ -151,7 +151,7 @@
 >
         <h3>Create Your Account</h3><br>
         <form>
-        <input type="text" name="user" placeholder="Create Username" required="required">
+        <input type="text" name="uname" placeholder="Create Username" required="required">
         <input type="text" name="name" placeholder="Your Name" required="required">
         <input type="text" name="address" placeholder="Address" required="required">
         <input type="submit" name="Next" class="login loginmodal-submit" data-toggle="modal" data-target="#next" value="Next ->">
@@ -164,12 +164,12 @@
             <div class="loginmodal-container">
               <h3>Create your Account</h3><h4>Page 2</h4><br>
               <form>
-                    <input type="text" name="Aadhar" placeholder="Aadhar card no./Pan no." required="required">
-                     <input type="radio" name="idver" required="required">Aadhar card no<br>   
-                    <input type="radio" name="idver" required="required" >Pan no.<br><br>
-                    <input type="email" name="Email" placeholder="Email address" required="required">
-                    <input type="date" name="Birthday" placeholder="Enter your birthday" required="required">
-                    <input type="password" name="pass" placeholder="Create a Password" required="required">
+                    <input type="text" name="aadhar" placeholder="Aadhar card no." required="required">
+                    <input type="text" name="pan" placeholder="Pan card no." required="required">
+                    <input type="text" name="mob" placeholder="Mobile no." required="required">
+                    <input type="email" name="email" placeholder="Email address" required="required">
+                    <input type="date" name="dob" placeholder="Enter your birthday" required="required">
+                    <input type="password" name="pwd" placeholder="Create a Password" required="required">
                     <input type="submit" name="Register" class="login loginmodal-submit" value="Register">
               </form>
             </div>
@@ -254,52 +254,6 @@
  </script>       
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ8k5YV_dl3_c4EmjRiiYRQ4H22BPFvFk&callback=myMap" type="text/javascript">
 </script>
-
-<!--	<script >
-		Highcharts.chart('container', {
-    chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'pie'
-    },
-    title: {
-        text: 'Browser market shares January, 2015 to May, 2015'
-    },
-    tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    },
-    plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: true,
-                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                style: {
-                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                }
-            }
-        }
-    },
-    series: [{
-        name: 'Brands',
-        colorByPoint: true,
-        data: [{
-            name: 'Stock',
-            y: 70
-        }, {
-            name: 'Mutual Fund',
-            y: 25,
-            sliced: true,
-            selected: true
-        }, {
-            name: 'Currency',
-            y: 5
-        }]
-    }]
-});
-	</script> -->
 	
 	<script>
 window.onload = function () {
