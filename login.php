@@ -38,6 +38,7 @@ if (isset($_POST['login']))
 			else 
 			{
 				$error = "Username or Password is invalid";
+				header("location:index.php");
 			}
 			mysqli_close($conn); // Closing Connection
 		}
