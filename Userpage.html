@@ -62,15 +62,15 @@
 <body>
 
 <div class="header">
-  <h2 style="white-space:pre">Amplify Portfolio&#9;<span class="glyphicon glyphicon-king glyphicon-bordered"></span></h2>
+  <h2 style="white-space:pre">User Portfolio&#9;<span class="glyphicon glyphicon-king glyphicon-bordered"></span></h2>
 </div>
 <ul id="navbar">
     <!--<li style="float:left; color:white;"><strong>Portfolio Manager</strong></li>-->
     <li style="float:right; white-space:pre"><a href="Homepage.html" ><span class="glyphicon glyphicon-log-out"></span>&#9;Logout</a></li>
     <li style="float:left; white-space:pre"><a href="#" onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger" ></span>&#9;Menu</a></li>
     <li style="float:left; white-space:pre"><a href="#top" >Home</a></li>
-    <li style="float:left; white-space:pre"><a href="#news">News</a></li>
-    <li style="float:left; white-space:pre"><a href="#" >Settings</a></li>
+    <li style="float:left; white-space:pre"><a href="https://economictimes.indiatimes.com/" target="_blank">News</a></li>
+    <!--li style="float:left; white-space:pre"><a href="#" >Settings</a></li-->
 </ul>
 <div class="jumbotron" style="padding:10px;">
 <div id="mySidenav" class="sidenav">
@@ -93,9 +93,10 @@
               <li><a href="#" class="tablinks" onclick="opensecurity(event, 'view_mutualfunds')"><span class="glyphicon glyphicon-stats"></span>&#9;View</a></li>
             </ul>
           </div>
-          <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'watchlist')"><span class="glyphicon glyphicon-bitcoin"></span>&#9;Trade Currency</a>
-          <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'watchlist')"><span class="glyphicon glyphicon-eye-open"></span>&#9;Watchlist</a>
-        <button class="btn btn-primary btn-lg" type="button"  style="width: 94.5%; margin: 5px;"><div id="defaultOpen"><span class="glyphicon glyphicon-user"></span>&#9;User</div>
+          <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'trade_currency')"><span class="glyphicon glyphicon-bitcoin"></span>&#9;Trade Currency
+          <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'watchlist')"><span class="glyphicon glyphicon-eye-open"></span>&#9;Watchlist
+          <button class="btn btn-primary btn-lg" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'transaction')"><span class="glyphicon glyphicon-lock"></span>&#9;Transaction
+          <button class="btn btn-primary btn-lg" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'user')"><span class="glyphicon glyphicon-user"></span>&#9;User
         </div>
        </div>
     </div>
@@ -146,6 +147,21 @@
             <p>Apna rupaiya sab pe bhari</p>
           </div>
           
+          <div id="watchlist" class="tabcontent">
+            <h3>Watch</h3>
+            <p>Apna rupaiya sab pe bhari</p>
+          </div>
+
+          <div id="transaction" class="tabcontent">
+            <h3>History</h3>
+            <p>Apna rupaiya sab pe bhari</p>
+          </div>
+
+          <div id="user" class="tabcontent">
+            <h3>User</h3>
+            <p>Apna rupaiya sab pe bhari</p>
+          </div>
+
         </div>
     
         <div class='disclaimer' style="font-size:0.9em; font-weight: normal; float: center;" >
