@@ -20,7 +20,8 @@ header("location: index.php"); // Redirecting To Home Page
     <link rel="stylesheet" type="text/css" href="AmplifyPortfolio.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>  
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
             <script>  
         $(document).ready(function(){
                 $("table#table_stocks").toggle();  
@@ -95,16 +96,13 @@ tr:nth-child(even) {background-color: #f2f2f2;
     <li style="float:right; white-space:pre"><a href="http://localhost/logout.php" ><span class="glyphicon glyphicon-log-out"></span>&#9;Logout</a></li>
     <li style="float:left; white-space:pre"><a href="#" onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger" ></span>&#9;Menu</a></li>
     <li style="float:left; white-space:pre"><a href="#top" >Home</a></li>
-    
     <li style="float:left; white-space:pre"><a href="https://economictimes.indiatimes.com/" target="_blank">News</a></li>
 </ul>
 <div class="jumbotron" style="padding:10px;">
 <div id="mySidenav" class="sidenav">
         <a href="#" onclick="closeNav()" style="float:right;">X</a>
-        <div class="tab">    
-            
-            <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'portfolio')" id="defaultOpen"><span class="glyphicon glyphicon-list-alt"></span>&#9;Portfolio</button>
-       
+        <div class="tab">      
+          <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'portfolio')" id="defaultOpen"><span class="glyphicon glyphicon-list-alt"></span>&#9;Portfolio</button>
           <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'stocks')"><span class="glyphicon glyphicon-stats"></span>&#9;Stocks
           <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'mutual_funds')"><span class="glyphicon glyphicon-signal"></span>&#9;Mutual Funds
           <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'trade_currency')"><span class="glyphicon glyphicon-bitcoin"></span>&#9;Trade Currency
@@ -132,7 +130,7 @@ tr:nth-child(even) {background-color: #f2f2f2;
                         die("Connection failed: " . mysqli_connect_error());
                     }
                     $username=$_SESSION['login_user'];
-                    $sql = "SELECT sum(total) as Investment FROM stocks where stocks.uname='$username';";
+                    $sql = "SELECT sum(total) as Investment FROM stocks where stocks.uname='$username'";
                     $result = mysqli_query($conn, $sql);
 
                     if (mysqli_num_rows($result) > 0) {
@@ -256,8 +254,6 @@ tr:nth-child(even) {background-color: #f2f2f2;
                                 while($row = mysqli_fetch_assoc($result1)) {
                                     $total=$total+$row["maxgainer1"];}}
                             echo "Rs.". $total. "/-<br>";
-                        
-                
 
                     mysqli_close($conn);
 
@@ -270,12 +266,11 @@ tr:nth-child(even) {background-color: #f2f2f2;
             <h3>Total Portfolio</h3>
             <div id="chart-container" style="height: 500px; width: 100%;"></div>
           </div>
-          
-         
+           
                 </div>
                  <div id="stocks" class="tabcontent" >
                  <br><br>
-                <h2 align=middle>Investments</h2>
+                <h2 align=middle id="invest">Investments</h2>
                 <hr>
     
     <?php 
@@ -319,7 +314,7 @@ tr:nth-child(even) {background-color: #f2f2f2;
                 <input name="search" id="search" type="text" class="typeahead" />
                 <button type="submit">Submit</button>
                 </form>
-                
+
                 <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
                 <span class="caret"></span></button>
@@ -349,7 +344,7 @@ tr:nth-child(even) {background-color: #f2f2f2;
                <tr style="padding:10px;"><td style="padding:10px;">Symbol:</td><td style="padding:10px;"><input type="text" name="ssym" style="width:300px;"></td></tr>
                <tr style="padding:10px;"><td style="padding:10px;">QTY:</td><td style="padding:10px;"><input type="number" name="qty" style="width:300px;"></td></tr>
                <tr style="padding:10px;"><td style="padding:10px;">Rate:</td><td style="padding:10px;"><input type="number" name="rate" style="width:300px;"></td></tr>
-               <tr style="padding:10px;"><td style="padding:10px;">Total:</td><td style="padding:10px;"><input type="number" name="total" value=qty*rate style="width:300px;"></td></tr>
+               <tr style="padding:10px;"><td style="padding:10px;">Total:</td><td style="padding:10px;"><input type="number" name="total" style="width:300px;"></td></tr>
                <tr style="padding:10px;"><td style="padding:10px;">Date:</td><td style="padding:10px;"><input type="date" name="bdate" style="width:300px;"></td></tr>
                <tr style="padding:10px;"><td colspan=2 style="padding:10px;"><input type="submit" name="add" value="Add" style="padding:10px;width:50%;"><input type="submit" name="transactions" value="Sell" style="padding:10px;width:50%;"></tr>
               </form>
@@ -482,21 +477,7 @@ tr:nth-child(even) {background-color: #f2f2f2;
                 Copyright © 2018. Everything done by Rahil,Mukund and Rohit.<br>
                 *******************************************************************************
             </div>
-            <div id = "main" class = "container-fluid ">
-        <h3 style = "text-align: center">Active Stock Prices</h3>
-        <ul class = "well">
-            <li id = "stock0">-</li>
-            <li id = "stock1">-</li>
-            <!-- <li id = "stock2">-</li>
-            <li id = "stock3">-</li>
-            <li id = "stock4">-</li>
-            <li id = "stock5">-</li>
-            <li id = "stock6">-</li>
-            <li id = "stock7">-</li>
-            <li id = "stock8">-</li>
-            <li id = "stock9">-</li> -->
-        </ul>
-    <div>
+            
     <script>
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
@@ -559,37 +540,6 @@ function explodePie (e) {
 	e.chart.render();
 }
 </script>       
-<script type = "text/javascript">
-    $(document).ready(function() {
-        setInterval(displayPrice, 3000);
-      });
-      var request = new XMLHttpRequest();
-      var count = 0;
-      request.open("GET", "https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&symbols=INFY,AAP&apikey=MUPL9IQMVVNXK8FS");
-          request.responseText = "json";
-          var obj;
-          request.onload = function() {
-              obj = JSON.parse(request.response);
-              var str = "stock";
-              for(var i = 0; i < 2; ++i)
-              {
-             document.getElementById(str + i.toString()).innerHTML ="<span class = 'col-xs-6'>" + obj["Stock Quotes"][i]["1. symbol"] + "</span>" + "<span class = 'col-xs-6'>" + obj["Stock Quotes"][i]["2. price"] + "</span>";
-                var ssymb= $('obj["Stock Quotes"][i]["1. symbol"]').val();
-                var currprice=$('obj["Stock Quotes"][i]["2. price"]').val();
-                /*var ssymb= 'INFY';
-                var currprice=100;*/
-                $.post(inputcurrprice.php,{postssymb:ssymb,postcurrprice:currprice},
-                printf("End of file\n");
-                function(){
-                    $('#result').html(data);
-                });
-                
-              }
-              ++count;
-          };
-          request.send();
-          
-      
-</script>     
+   
 </body>
 </html>
