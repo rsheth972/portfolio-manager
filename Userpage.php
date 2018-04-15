@@ -81,7 +81,8 @@ header("location: index.php"); // Redirecting To Home Page
 #tab_echo{
     border: 2px black;
 }
-
+tr:nth-child(even) {background-color: #f2f2f2;
+    border:2px solid black;}
 </style>
 
 </head>
@@ -175,26 +176,69 @@ header("location: index.php"); // Redirecting To Home Page
     </table>
 
         <div style="text-align:center">
-        
         <div id="portfolio" class="tabcontent">
             <h3>Total Portfolio</h3>
             <div id="chart-container" style="height: 500px; width: 100%;"></div>
           </div>
           
-          <div id="stocks" class="tabcontent">
+         
+                </div>
+                 <div id="stocks" class="tabcontent" >
+                 <br><br>
+                <h2 align=middle>Investments</h2>
+                <hr>
+    
+    <?php 
+     $servername = "localhost";
+     $username = "root";
+     $password = "";
+     $db="project";
+ 
+     // Create connection
+ $conn = mysqli_connect($servername, $username, $password, $db);
+ // Check connection
+ if (!$conn) {
+     die("Connection failed: " . mysqli_connect_error());
+ }
+ $username=$_SESSION['login_user'];
+ $sql = "SELECT ssym, qty, rate, total FROM stocks where stocks.uname='$username';";
+ $result = mysqli_query($conn, $sql);
+ 
+ if (mysqli_num_rows($result) > 0) {
+     ?>
+     <table style="padding:10px;border:2px solid black;"><tr><th style="padding:10px;background-color:black;color:white;width:25%;">Stock</th><th style="padding:10px;background-color:black;color:white;width:25%;">Qty</th><th style="padding:10px;background-color:black;color:white;width:25%;">Rate</th><th style="padding:10px;background-color:black;color:white;width:25%;">Total</th></tr>
+ <?php
+     while($row = mysqli_fetch_assoc($result)) {
+         ?>
+        <tr ><td style="padding:0px;width:25%;"><strong><?php echo $row["ssym"];?></strong></td><td style="padding:10px;width:20%;"><strong><?php echo  $row["qty"];?></strong></td><td style="padding:10px;width:20%;"><strong><?php echo $row["rate"];?></strong></td><td style="padding:10px;width:20%;"><?php echo $row["total"];?></strong></td><?php
+        
+     }
+     echo "</table>";
+ } else {
+     echo "0 results";
+ }
+ 
+ mysqli_close($conn);
+ 
+ ?>  <hr>
+ <br>
+                <table>
+                <tr><td>
                 <h3>View stock</h3>
-                <div class="container">
-                <input type='text' name='search'>
+                <form name="form" action="" method="post">
+                <input name="search" id="search" type="text" class="typeahead" />
                 <button type="submit">Submit</button>
+                </form>
+                
                 <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu"><br>
                 <span style="float:center;">
                 <?php
-				/*$stock=$_REQUEST['search'];
-                $stock='/'.$stock.'/';*/
-                $stock='/IN/';
+				$stock=$_POST["search"];
+                $stock='/'.$stock.'/';
+                /*$stock='/IN/';*/
                 $ch = fopen("NSE.csv", "r");
                 while($row = fgetcsv($ch)) {
                     if (preg_match($stock, $row = implode(' | ', $row))) {
@@ -204,43 +248,11 @@ header("location: index.php"); // Redirecting To Home Page
                 ?>
                 </span>
                 </ul>
+            
             </div>
-            </div>
-                
-                <p>View Table</p>
-    
-   <?php 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $db="project";
-
-    // Create connection
-$conn = mysqli_connect($servername, $username, $password, $db);
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-$username=$_SESSION['login_user'];
-$sql = "SELECT ssym, qty, rate, total FROM stocks where stocks.uname='$username';";
-$result = mysqli_query($conn, $sql);
-
-if (mysqli_num_rows($result) > 0) {
-    
-    echo "<table><tr><th>Stock</th><th>Qty</th><th>Rate</th><th>Total</th></tr>"; 
-
-    while($row = mysqli_fetch_assoc($result)) {
-        echo "<tr><td>" . $row["ssym"]. "</td><td>" . $row["qty"]. "</td><td> " . $row["rate"]. "</td><td> " . $row["total"]. "</td></tr>";
-    }
-    echo "</table>";
-} else {
-    echo "0 results";
-}
-
-mysqli_close($conn);
-
-?>
-                <div class="jumbotron" style="width:600px;float:center;">
+            </td>
+                <td>
+                <div class="jumbotron" style="width:100%;float:center;">
                 <button id="show">Add/Delete</button>   
                 <table id="table_stocks" style="width:500px;padding:10px;border:2px solid black;float:center;">
               <form action="insertdata.php" method="post">
@@ -253,7 +265,11 @@ mysqli_close($conn);
               </form>
               </table>
               </div>
-
+             </td>
+             </tr>
+             </table>
+</div>
+</div>
           <div id="mutual_funds" class="tabcontent">
             <h3>Modify Mutual funds</h3>
             <p>Mutual funds are subject to market risks. Modify Row</p> 
