@@ -19,6 +19,7 @@ header("location: index.php"); // Redirecting To Home Page
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <link rel="stylesheet" type="text/css" href="AmplifyPortfolio.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <style>
    
@@ -203,15 +204,14 @@ mysqli_close($conn);
 ?>
                 <h3>Add Stocks</h3>
               <form action="insertdata.php" method="post">
-               <!-- UserName:<input type="text" name="uname"><br>-->
-                Symbol:<input type="text" name="ssym"><br><br>
+               Symbol:<input type="text" name="ssym"><br><br>
                 QTY:<input type="number" name="qty"><br><br>
                 Rate:<input type="number" name="rate"><br><br>
                 Total:<input type="number" name="total" value=qty*rate><br><br>
                 Buy Date:<input type="date" name="bdate"><br>
                 <input type="submit" name="add" value="add">
               </form>
-              </div>
+              
 
           <div id="mutual_funds" class="tabcontent">
             <h3>Modify Mutual funds</h3>
