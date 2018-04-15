@@ -20,6 +20,16 @@ header("location: index.php"); // Redirecting To Home Page
     <link rel="stylesheet" type="text/css" href="AmplifyPortfolio.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>  
+            <script>  
+        $(document).ready(function(){
+                $("table#table_stocks").toggle();  
+                $("#show").click(function(){  
+                $("table#table_stocks").toggle();  
+            });    
+        }); 
+        
+        </script>  
 
 <style>
    
@@ -125,7 +135,35 @@ header("location: index.php"); // Redirecting To Home Page
   <div style="float:right;"><?php echo "Logged in as:".$_SESSION['login_user'];?><br><br></div>
         <table id="tabled">
         <tr>
-                <th id="color_odd">Investment<br><p style="font-size:0.9em; font-weight: normal;">Data</p></th>
+                <th id="color_odd">Investment<br><p style="font-size:0.9em; font-weight: normal;">
+               <?php
+                $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $db="project";
+
+                        // Create connection
+                    $conn = mysqli_connect($servername, $username, $password, $db);
+                    // Check connection
+                    if (!$conn) {
+                        die("Connection failed: " . mysqli_connect_error());
+                    }
+                    $username=$_SESSION['login_user'];
+                    $sql = "SELECT sum(total) as Investment FROM stocks where stocks.uname='$username';";
+                    $result = mysqli_query($conn, $sql);
+
+                    if (mysqli_num_rows($result) > 0) {
+                        while($row = mysqli_fetch_assoc($result)) {
+                            echo "Rs.". $row["Investment"]. "/-";
+                        }
+                    } else {
+                        echo "0";
+                    }
+
+                    mysqli_close($conn);
+
+                    ?>
+                </p></th>
                 <th id="color_even">Today's Gain<br><p style="font-size:0.9em; font-weight: normal;">Data</p></th>
                 <th id="color_odd">Max Gainer<br><p style="font-size:0.9em; font-weight: normal;">Data</p></th>
         </tr>
@@ -156,7 +194,7 @@ header("location: index.php"); // Redirecting To Home Page
                 <?php
 				/*$stock=$_REQUEST['search'];
                 $stock='/'.$stock.'/';*/
-                $stock='/APP/';
+                $stock='/IN/';
                 $ch = fopen("NSE.csv", "r");
                 while($row = fgetcsv($ch)) {
                     if (preg_match($stock, $row = implode(' | ', $row))) {
@@ -202,16 +240,19 @@ if (mysqli_num_rows($result) > 0) {
 mysqli_close($conn);
 
 ?>
-                <h3>Add Stocks</h3>
+                <div class="jumbotron" style="width:600px;float:center;">
+                <button id="show">Add/Delete</button>   
+                <table id="table_stocks" style="width:500px;padding:10px;border:2px solid black;float:center;">
               <form action="insertdata.php" method="post">
-               Symbol:<input type="text" name="ssym"><br><br>
-                QTY:<input type="number" name="qty"><br><br>
-                Rate:<input type="number" name="rate"><br><br>
-                Total:<input type="number" name="total" value=qty*rate><br><br>
-                Buy Date:<input type="date" name="bdate"><br>
-                <input type="submit" name="add" value="add">
+               <tr style="padding:10px;"><td style="padding:10px;">Symbol:</td><td style="padding:10px;"><input type="text" name="ssym" style="width:300px;"></td></tr>
+               <tr style="padding:10px;"><td style="padding:10px;">QTY:</td><td style="padding:10px;"><input type="number" name="qty" style="width:300px;"></td></tr>
+               <tr style="padding:10px;"><td style="padding:10px;">Rate:</td><td style="padding:10px;"><input type="number" name="rate" style="width:300px;"></td></tr>
+               <tr style="padding:10px;"><td style="padding:10px;">Total:</td><td style="padding:10px;"><input type="number" name="total" value=qty*rate style="width:300px;"></td></tr>
+               <tr style="padding:10px;"><td style="padding:10px;">Date:</td><td style="padding:10px;"><input type="date" name="bdate" style="width:300px;"></td></tr>
+               <tr style="padding:10px;"><td colspan=2 style="padding:10px;"><input type="submit" name="add" value="Add" style="padding:10px;width:50%;"><input type="submit" name="transactions" value="Sell" style="padding:10px;width:50%;"></tr>
               </form>
-              
+              </table>
+              </div>
 
           <div id="mutual_funds" class="tabcontent">
             <h3>Modify Mutual funds</h3>

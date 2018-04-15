@@ -22,7 +22,7 @@ echo "Connected successfully";
             $row_cnt = mysqli_num_rows($result);
             printf("Result set has %d rows.\n", $row_cnt);
             echo "Connected by query<br>";
-            $result=1;
+            $result=2;
             if(mysqli_num_rows($result))
             {
                 echo "Connected by <br>";
@@ -58,9 +58,19 @@ echo "Connected successfully";
 		
 		mysqli_query($conn,$sql3);
             }
+            else if(isset($_POST['transactions']))
+            {
+	
+                $sql3 = "INSERT INTO transactions(uname, ssym,qty,rate,total,sdate) VALUES
+                ('".$user."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$_POST['total'].",'".$_POST['bdate']."')";
+                
+                mysqli_query($conn,$sql3);
+                    }
+                
 		
 		echo "agc";
-		mysqli_close($conn);
+        mysqli_close($conn);
+        header("location: Userpage.php");
 
 }
 
