@@ -286,8 +286,78 @@ tr:nth-child(even) {background-color: #f2f2f2;
           </div>
 
           <div id="transaction" class="tabcontent">
-            <h3>History</h3>
-            <p>Apna rupaiya sab pe bhari</p>
+          <br><br>
+                <h2 align=middle>Buy Transactions</h2>
+                <hr>
+            <?php 
+                            $servername = "localhost";
+                            $username = "root";
+                            $password = "";
+                            $db="project";
+                        
+                            // Create connection
+                        $conn = mysqli_connect($servername, $username, $password, $db);
+                        // Check connection
+                        if (!$conn) {
+                            die("Connection failed: " . mysqli_connect_error());
+                        }
+                        $username=$_SESSION['login_user'];
+                        $sql = "SELECT ssym, qty, rate, total,bdate FROM transactionb where transactionb.uname='$username';";
+                        $result = mysqli_query($conn, $sql);
+                        
+                        if (mysqli_num_rows($result) > 0) {
+                            ?>
+                            <table style="padding:10px;border:2px solid black;"><tr><th style="padding:10px;background-color:black;color:white;width:18%;">Stock</th><th style="padding:10px;background-color:black;color:white;width:18%;">Qty</th><th style="padding:10px;background-color:black;color:white;width:18%;">Rate</th><th style="padding:10px;background-color:black;color:white;width:18%;">Total</th><th style="padding:10px;background-color:black;color:white;width:18%;">Buy Date</th></tr>
+                        <?php
+                            while($row = mysqli_fetch_assoc($result)) {
+                                ?>
+                                <tr ><td style="padding:0px;width:18%;"><strong><?php echo $row["ssym"];?></strong></td><td style="padding:10px;width:18%;"><strong><?php echo  $row["qty"];?></strong></td><td style="padding:10px;width:18%;"><strong><?php echo $row["rate"];?></strong></td><td style="padding:10px;width:18%;"><?php echo $row["total"];?></strong></td><td style="padding:10px;width:18%;"><?php echo $row["bdate"];?></strong></td><?php
+                                
+                            }
+                            echo "</table>";
+                        } else {
+                            echo "0 results";
+                        }
+                        
+                        mysqli_close($conn);
+                        
+ ?>  <hr>
+ <br><br>
+                <h2 align=middle>Sell Transactions</h2>
+                <hr>
+            <?php 
+                            $servername = "localhost";
+                            $username = "root";
+                            $password = "";
+                            $db="project";
+                        
+                            // Create connection
+                        $conn = mysqli_connect($servername, $username, $password, $db);
+                        // Check connection
+                        if (!$conn) {
+                            die("Connection failed: " . mysqli_connect_error());
+                        }
+                        $username=$_SESSION['login_user'];
+                        $sql = "SELECT ssym, qty, rate, total,sdate FROM transactions where transactions.uname='$username';";
+                        $result = mysqli_query($conn, $sql);
+                        
+                        if (mysqli_num_rows($result) > 0) {
+                            ?>
+                            <table style="padding:10px;border:2px solid black;"><tr><th style="padding:10px;background-color:black;color:white;width:18%;">Stock</th><th style="padding:10px;background-color:black;color:white;width:18%;">Qty</th><th style="padding:10px;background-color:black;color:white;width:18%;">Rate</th><th style="padding:10px;background-color:black;color:white;width:18%;">Total</th><th style="padding:10px;background-color:black;color:white;width:18%;">Sell Date</th></tr>
+                        <?php
+                            while($row = mysqli_fetch_assoc($result)) {
+                                ?>
+                                <tr ><td style="padding:0px;width:18%;"><strong><?php echo $row["ssym"];?></strong></td><td style="padding:10px;width:18%;"><strong><?php echo  $row["qty"];?></strong></td><td style="padding:10px;width:18%;"><strong><?php echo $row["rate"];?></strong></td><td style="padding:10px;width:18%;"><?php echo $row["total"];?></strong></td><td style="padding:10px;width:18%;"><?php echo $row["sdate"];?></strong></td><?php
+                                
+                            }
+                            echo "</table>";
+                        } else {
+                            echo "0 results";
+                        }
+                        
+                        mysqli_close($conn);
+                        
+ ?>  <hr>
           </div>
 
           <div id="user" class="tabcontent">
