@@ -17,16 +17,16 @@ echo "Connected successfully";
     if(isset($_POST['add']))
 		{echo "Connected jfkfjytfkytfkuyg successfully";
 
-            $check = "SELECT COUNT(*) FROM stocks WHERE stocks.ssym = ".$_POST['ssym']." AND stocks.uname = ".$user.";";
-            $result = mysqli_query($conn, "SELECT COUNT(*) FROM stocks WHERE stocks.ssym = ".$_POST['ssym']." AND stocks.uname = ".$user.";");
+            $check = "SELECT COUNT(transactionb.ssym) FROM transactionb WHERE transactionb.ssym = ".$_POST['ssym']." AND transactionb.uname = ".$user.";";
+            $result = mysqli_query($conn,$check);
             $row_cnt = mysqli_num_rows($result);
             printf("Result set has %d rows.\n", $row_cnt);
             echo "Connected by query<br>";
-            $result=2;
-            if(mysqli_num_rows($result))
+            //$result=2;
+            if(mysqli_num_rows($result)>0)
             {
                 echo "Connected by <br>";
-                $sql = "SELECT qty, rate FROM stocks WHERE stocks.ssym = ".$_POST['ssym']." AND stocks.uname = ".$user."";
+                $sql = "SELECT qty, rate FROM transactionb WHERE transactionb.ssym = ".$_POST['ssym']." AND transactionb.uname = ".$user.";";
                 $result1 = mysqli_query($conn, $sql);
                 $qty = ".$_POST[qty].";
                 $rate =".$_POST[rate].";
@@ -42,9 +42,14 @@ echo "Connected successfully";
                 } else {
                     echo "<br>Error updating record: updation<br> " . mysqli_error($conn);
                 }
+               
                 
             } 
             else {
+                $sql3 = "INSERT INTO transactionb(uname, ssym,qty,rate,total,bdate) VALUES
+                ('".$user."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$_POST['total'].",'".$_POST['bdate']."')";
+                
+                mysqli_query($conn,$sql3);
                 $sql = "INSERT INTO stocks(uname,ssym,qty,rate,total) VALUES('".$user."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$_POST['total'].")";
         if (mysqli_query($conn, $sql)) {
             echo "Record updated successfully";
@@ -53,10 +58,7 @@ echo "Connected successfully";
         }
 		
             }
-            $sql3 = "INSERT INTO transactionb(uname, ssym,qty,rate,total,bdate) VALUES
-		('".$user."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$_POST['total'].",'".$_POST['bdate']."')";
-		
-		mysqli_query($conn,$sql3);
+            
         }
             else if(isset($_POST['transactions']))
             {
