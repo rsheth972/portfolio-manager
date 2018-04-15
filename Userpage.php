@@ -92,14 +92,11 @@ tr:nth-child(even) {background-color: #f2f2f2;
   <h2 style="white-space:pre">User Portfolio&#9;<span class="glyphicon glyphicon-king glyphicon-bordered"></span></h2>
 </div>
 <ul id="navbar">
-    <!--<li style="float:left; color:white;"><strong>Portfolio Manager</strong></li>-->
     <li style="float:right; white-space:pre"><a href="http://localhost/logout.php" ><span class="glyphicon glyphicon-log-out"></span>&#9;Logout</a></li>
     <li style="float:left; white-space:pre"><a href="#" onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger" ></span>&#9;Menu</a></li>
     <li style="float:left; white-space:pre"><a href="#top" >Home</a></li>
     
     <li style="float:left; white-space:pre"><a href="https://economictimes.indiatimes.com/" target="_blank">News</a></li>
-    <!-- <li style="float:right; white-space:pre"><a href="#"></a></li>
-    li style="float:left; white-space:pre"><a href="#" >Settings</a></li -->
 </ul>
 <div class="jumbotron" style="padding:10px;">
 <div id="mySidenav" class="sidenav">
@@ -107,22 +104,7 @@ tr:nth-child(even) {background-color: #f2f2f2;
         <div class="tab">    
             
             <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'portfolio')" id="defaultOpen"><span class="glyphicon glyphicon-list-alt"></span>&#9;Portfolio</button>
-        <!--div class="dropdown">
-            <button class="btn btn-primary btn-lg dropdown-toggle" type="button" style="width: 94.5%; margin: 5px;" data-toggle="dropdown" style="width: 100%">Stocks
-            <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <li><a href="#" class="tablinks" onclick="opensecurity(event, 'modify_stock')"><span class="glyphicon glyphicon-pencil"></span>&#9;Modify</a></li>
-              <li> <a href="#" class="tablinks" onclick="opensecurity(event, 'view_stock')"><span class="glyphicon glyphicon-stats"></span>&#9;View</a></li>
-            </ul>
-          </div>
-        <div class="dropdown">
-            <button class="btn btn-primary btn-lg dropdown-toggle" type="button" style="width: 94.5%; margin: 5px;" data-toggle="dropdown">Mutual Funds
-            <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <li><a href="#" class="tablinks" onclick="opensecurity(event, 'modify_mutualfunds')"><span class="glyphicon glyphicon-pencil"></span>&#9;Modify</a></li>
-              <li><a href="#" class="tablinks" onclick="opensecurity(event, 'view_mutualfunds')"><span class="glyphicon glyphicon-stats"></span>&#9;View</a></li>
-            </ul>
-          </div-->
+       
           <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'stocks')"><span class="glyphicon glyphicon-stats"></span>&#9;Stocks
           <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'mutual_funds')"><span class="glyphicon glyphicon-signal"></span>&#9;Mutual Funds
           <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'trade_currency')"><span class="glyphicon glyphicon-bitcoin"></span>&#9;Trade Currency
@@ -392,6 +374,21 @@ tr:nth-child(even) {background-color: #f2f2f2;
                 Copyright © 2018. Everything done by Rahil,Mukund and Rohit.<br>
                 *******************************************************************************
             </div>
+            <div id = "main" class = "container-fluid ">
+        <h3 style = "text-align: center">Active Stock Prices</h3>
+        <ul class = "well">
+            <li id = "stock0">-</li>
+            <li id = "stock1">-</li>
+            <!-- <li id = "stock2">-</li>
+            <li id = "stock3">-</li>
+            <li id = "stock4">-</li>
+            <li id = "stock5">-</li>
+            <li id = "stock6">-</li>
+            <li id = "stock7">-</li>
+            <li id = "stock8">-</li>
+            <li id = "stock9">-</li> -->
+        </ul>
+    <div>
     <script>
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
@@ -454,6 +451,37 @@ function explodePie (e) {
 	e.chart.render();
 }
 </script>       
-            
+<script type = "text/javascript">
+    $(document).ready(function() {
+        setInterval(displayPrice, 3000);
+      });
+      var request = new XMLHttpRequest();
+      var count = 0;
+      request.open("GET", "https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&symbols=INFY,AAP&apikey=MUPL9IQMVVNXK8FS");
+          request.responseText = "json";
+          var obj;
+          request.onload = function() {
+              obj = JSON.parse(request.response);
+              var str = "stock";
+              for(var i = 0; i < 2; ++i)
+              {
+             document.getElementById(str + i.toString()).innerHTML ="<span class = 'col-xs-6'>" + obj["Stock Quotes"][i]["1. symbol"] + "</span>" + "<span class = 'col-xs-6'>" + obj["Stock Quotes"][i]["2. price"] + "</span>";
+                var ssymb= $('obj["Stock Quotes"][i]["1. symbol"]').val();
+                var currprice=$('obj["Stock Quotes"][i]["2. price"]').val();
+                /*var ssymb= 'INFY';
+                var currprice=100;*/
+                $.post(inputcurrprice.php,{postssymb:ssymb,postcurrprice:currprice},
+                printf("End of file\n");
+                function(){
+                    $('#result').html(data);
+                });
+                
+              }
+              ++count;
+          };
+          request.send();
+          
+      
+</script>     
 </body>
 </html>
