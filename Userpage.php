@@ -148,12 +148,120 @@ tr:nth-child(even) {background-color: #f2f2f2;
                     ?>
                 </p></th>
                 <th id="color_even">Today's Gain<br><p style="font-size:0.9em; font-weight: normal;">Data</p></th>
-                <th id="color_odd">Max Gainer<br><p style="font-size:0.9em; font-weight: normal;">Data</p></th>
+                <th id="color_odd">Max Gainer<br><p style="font-size:0.9em; font-weight: normal;"><?php
+                $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $db="project";
+
+                        // Create connection
+                    $conn = mysqli_connect($servername, $username, $password, $db);
+                    // Check connection
+                    if (!$conn) {
+                        die("Connection failed: " . mysqli_connect_error());
+                    }
+                    $username=$_SESSION['login_user'];
+                    $sql = "SELECT max(profit) as maxgainer FROM stocks where stocks.uname='$username'";
+                    $result = mysqli_query($conn, $sql);
+
+                    if (mysqli_num_rows($result) > 0) {
+                        while($row = mysqli_fetch_assoc($result)) {
+                            echo "Rs.". $row["maxgainer"]. "/-<br>";
+                        }
+                    } else {
+                        echo "0";
+                    }
+
+                    mysqli_close($conn);
+
+                    ?></p></th>
         </tr>
             <tr>
-                <th id="color_even">Max Losser<br><p style="font-size:0.9em; font-weight: normal;">Data</p></th>
-                <th id="color_odd">Overall Gain<br><p style="font-size:0.9em; font-weight: normal;">Data</p></th>
-                <th id="color_even">Overall Networth<br><p style="font-size:0.9em; font-weight: normal;">Data</p></th>
+                <th id="color_even">Max Losser<br><p style="font-size:0.9em; font-weight: normal;"><?php
+                $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $db="project";
+
+                        // Create connection
+                    $conn = mysqli_connect($servername, $username, $password, $db);
+                    // Check connection
+                    if (!$conn) {
+                        die("Connection failed: " . mysqli_connect_error());
+                    }
+                    $username=$_SESSION['login_user'];
+                    $sql = "SELECT min(profit) as maxgainer FROM stocks where stocks.uname='$username'";
+                    $result = mysqli_query($conn, $sql);
+
+                    if (mysqli_num_rows($result) > 0) {
+                        while($row = mysqli_fetch_assoc($result)) {
+                            echo "Rs.". $row["maxgainer"]. "/-<br>";
+                        }
+                    } else {
+                        echo "0";
+                    }
+
+                    mysqli_close($conn);
+
+                    ?></p></th>
+                <th id="color_odd">Overall Gain<br><p style="font-size:0.9em; font-weight: normal;"><?php
+                $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $db="project";
+
+                        // Create connection
+                    $conn = mysqli_connect($servername, $username, $password, $db);
+                    // Check connection
+                    if (!$conn) {
+                        die("Connection failed: " . mysqli_connect_error());
+                    }
+                    $username=$_SESSION['login_user'];
+                    $sql = "SELECT sum(profit) as maxgainer FROM stocks where stocks.uname='$username'";
+                    $result = mysqli_query($conn, $sql);
+
+                    if (mysqli_num_rows($result) > 0) {
+                        while($row = mysqli_fetch_assoc($result)) {
+                            echo "Rs.". $row["maxgainer"]. "/-<br>";
+                        }
+                    } else {
+                        echo "0";
+                    }
+
+                    mysqli_close($conn);
+
+                    ?></p></th>
+                <th id="color_even">Overall Networth<br><p style="font-size:0.9em; font-weight: normal;"><?php
+                $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $db="project";
+
+                        // Create connection
+                    $conn = mysqli_connect($servername, $username, $password, $db);
+                    // Check connection
+                    if (!$conn) {
+                        die("Connection failed: " . mysqli_connect_error());
+                    }
+                    $username=$_SESSION['login_user'];
+                    $sql = "SELECT sum(total) as maxgainer FROM stocks where stocks.uname='$username'";
+                    $sql1 = "SELECT sum(profit) as maxgainer1 FROM stocks where stocks.uname='$username'";
+                    $result = mysqli_query($conn, $sql);
+                    $result1 = mysqli_query($conn, $sql1);
+                    $total=0;
+                    if (mysqli_num_rows($result) > 0) {
+                        while($row = mysqli_fetch_assoc($result)) {
+                            $total=$total+$row["maxgainer"];}}
+                    if (mysqli_num_rows($result1) > 0) {
+                                while($row = mysqli_fetch_assoc($result1)) {
+                                    $total=$total+$row["maxgainer1"];}}
+                            echo "Rs.". $total. "/-<br>";
+                        
+                
+
+                    mysqli_close($conn);
+
+                    ?></p></th>
                 </tr>
     </table>
 

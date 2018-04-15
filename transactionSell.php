@@ -16,7 +16,7 @@ echo "Connected successfully";
 
     if(isset($_POST['transactions']))
 		{
-	
+            $sql = "SELECT * from stocks where"
             $sql3 = "INSERT INTO transactionb(uname, ssym,qty,rate,total,bdate) VALUES
             ('".$user."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$_POST['total'].",'".$_POST['bdate']."')";
             

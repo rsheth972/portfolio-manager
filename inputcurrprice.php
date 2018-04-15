@@ -19,13 +19,13 @@
                         $qty=$row["qty"];
                         $rate=$row["rate"];
                         $total=$row["total"];
-                        if($ssym='".$_POST['postssymb']."')
-                        /*if($ssym='roh')*/
+                        /*if($ssym='".$_POST['postssymb']."')*/
+                        if($ssym='WIPRO')
                         {
-                            $currprice=2000;
+                            $currprice=150;
                             $profit=(($row["qty"] * $currprice)-$row["total"]);
                             $pper=(($profit/$row["total"])*100);
-                            $sql1 = "UPDATE stocks SET currprice=$currprice,profit=$profit,pper=$pper WHERE stocks.ssym = '".$_POST['postssymb']."' AND rate=$rate AND qty=$qty ;";
+                            $sql1 = "UPDATE stocks SET currprice=$currprice,profit=$profit,pper=$pper WHERE stocks.ssym = 'WIPRO' AND rate=$rate AND qty=$qty ;";
                         if (mysqli_query($conn, $sql1)) {
                             echo "Record updated successfully";
                         } else {

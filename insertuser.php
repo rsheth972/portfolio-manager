@@ -23,6 +23,7 @@ echo "Connected successfully";
 		mysqli_query($conn,$sql);
 		echo "agc";
 		mysqli_close($conn);
+		header("location: index.php");
 
 }
 }

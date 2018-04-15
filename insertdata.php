@@ -45,7 +45,7 @@ echo "Connected successfully";
                 
             } 
             else {
-                $sql = "INSERT INTO stocks VALUES('".$user."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$_POST['total'].")";
+                $sql = "INSERT INTO stocks(uname,ssym,qty,rate,total) VALUES('".$user."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$_POST['total'].")";
         if (mysqli_query($conn, $sql)) {
             echo "Record updated successfully";
         } else {
