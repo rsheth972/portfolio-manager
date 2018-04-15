@@ -182,11 +182,12 @@ $conn = mysqli_connect($servername, $username, $password, $db);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-
-$sql = "SELECT ssym, qty, rate, total FROM stocks ;";
+$username=$_SESSION['login_user'];
+$sql = "SELECT ssym, qty, rate, total FROM stocks where stocks.uname='$username';";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
+    
     echo "<table><tr><th>Stock</th><th>Qty</th><th>Rate</th><th>Total</th></tr>"; 
 
     while($row = mysqli_fetch_assoc($result)) {
@@ -202,11 +203,11 @@ mysqli_close($conn);
 ?>
                 <h3>Add Stocks</h3>
               <form action="insertdata.php" method="post">
-                UserName:<input type="text" name="uname"><br>
-                Symbol:<input type="text" name="ssym"><br>
-                QTY:<input type="number" name="qty"><br>
-                Rate:<input type="number" name="rate"><br>
-                Total:<input type="number" name="total" value=qty*rate><br>
+               <!-- UserName:<input type="text" name="uname"><br>-->
+                Symbol:<input type="text" name="ssym"><br><br>
+                QTY:<input type="number" name="qty"><br><br>
+                Rate:<input type="number" name="rate"><br><br>
+                Total:<input type="number" name="total" value=qty*rate><br><br>
                 Buy Date:<input type="date" name="bdate"><br>
                 <input type="submit" name="add" value="add">
               </form>
