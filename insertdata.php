@@ -57,7 +57,7 @@ echo "Connected successfully";
 		('".$user."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$_POST['total'].",'".$_POST['bdate']."')";
 		
 		mysqli_query($conn,$sql3);
-            }
+        }
             else if(isset($_POST['transactions']))
             {
 	
