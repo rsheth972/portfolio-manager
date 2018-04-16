@@ -234,9 +234,10 @@ tr:nth-child(even) {background-color: #f2f2f2;
                         while($row = mysqli_fetch_assoc($result)) {
                             $sql = "SELECT stocks.ssym FROM stocks where stocks.uname='$username' and stocks.profit=".$row["maxgainer"].";";
                             $result = mysqli_query($conn, $sql);
-        
+                            //if($row["maxgainer"]<0){
                             if (mysqli_num_rows($result) > 0) {
                                 while($row = mysqli_fetch_assoc($result)) {
+                                    
                                     echo "Stock Symbol:". $row["ssym"]. "<br>";
                                 }
                             } else {
@@ -244,6 +245,7 @@ tr:nth-child(even) {background-color: #f2f2f2;
                             }
                             //echo "Rs.". $row["maxgainer"]. "/-<br>";
                         }
+                    //}
                     } else {
                         echo "0";
                     }
@@ -270,10 +272,10 @@ tr:nth-child(even) {background-color: #f2f2f2;
 
                     if (mysqli_num_rows($result) > 0) {
                         while($row = mysqli_fetch_assoc($result)) {
+                            //if($row["maxgainer"]<0){
                             echo "Rs.". $row["maxgainer"]. "/-<br>";
                         }
-                    } else {
-                        echo "0";
+                    //}
                     }
 
                     mysqli_close($conn);
@@ -597,6 +599,22 @@ tr:nth-child(even) {background-color: #f2f2f2;
                 *******************************************************************************
             </div>
             
+            <div id = "main" class = "container-fluid ">   +            
+       <h3 style = "text-align: center">Active Stock Prices</h3>  
+        <ul class = "well">    
+            <li id = "stock0">-</li>   
+            <li id = "stock1">-</li>   
+           <li id = "stock2">-</li>  
+            <li id = "stock3">-</li>   
+            <li id = "stock4">-</li>   
+           <li id = "stock5">-</li>   
+            <li id = "stock6">-</li>   
+            <li id = "stock7">-</li>   
+            <li id = "stock8">-</li>   
+            <li id = "stock9">-</li>   
+        </ul>  
+    <div>
+
     <script>
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
@@ -640,35 +658,35 @@ var chart = new CanvasJS.Chart("chart-container", {
 		toolTipContent: "{name}: <strong>{y}%</strong>",
 		indexLabel: "{name} - {y}%",
 		dataPoints: [
-			{ y: 75, name: "Stocks", exploded: true }
+			{ y: 75, name: "Stocks", exploded: true },
             <?php
-                $servername = "localhost";
-                        $username = "root";
-                        $password = "";
-                        $db="project";
+                // $servername = "localhost";
+                //         $username = "root";
+                //         $password = "";
+                //         $db="project";
 
-                        // Create connection
-                    $conn = mysqli_connect($servername, $username, $password, $db);
-                    // Check connection
-                    $total;
-                    if (!$conn) {
-                        die("Connection failed: " . mysqli_connect_error());
-                    }
-                    $username=$_SESSION['login_user'];
-                    $sql = "SELECT sum(total) as Investment FROM stocks where stocks.uname='$username'";
-                    $result = mysqli_query($conn, $sql);
+                //         // Create connection
+                //     $conn = mysqli_connect($servername, $username, $password, $db);
+                //     // Check connection
+                //     $total;
+                //     if (!$conn) {
+                //         die("Connection failed: " . mysqli_connect_error());
+                //     }
+                //     $username=$_SESSION['login_user'];
+                //     $sql = "SELECT sum(total) as Investment FROM stocks where stocks.uname='$username'";
+                //     $result = mysqli_query($conn, $sql);
 
-                    if (mysqli_num_rows($result) > 0) {
-                        while($row = mysqli_fetch_assoc($result)) {
-                            echo "Rs.". $row["Investment"]. "/-";
-                        }
-                    } 
+                //     if (mysqli_num_rows($result) > 0) {
+                //         while($row = mysqli_fetch_assoc($result)) {
+                //             echo "Rs.". $row["Investment"]. "/-";
+                //         }
+                //     } 
 
-                    mysqli_close($conn);
+                //     mysqli_close($conn);
 
                     ?>
-			// { y: 20, name: "Mutual fund" },
-			// { y: 5, name: "Currency" },
+			{ y: 20, name: "Mutual fund" },
+			{ y: 5, name: "Currency" },
 		]
 	}]
 });
@@ -685,6 +703,36 @@ function explodePie (e) {
 	e.chart.render();
 }
 </script>       
-   
+ <script type = "text/javascript">     
+    $(document).ready(function() { 
+       setInterval(displayPrice); 
+      });  
+      var request = new XMLHttpRequest();  
+      var count = 0;   
+      request.open("GET", "https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&symbols=INFY,AAP&apikey=MUPL9IQMVVNXK8FS");   
+          request.responseText = "json";   
+          var obj; 
+          request.onload = function() {    
+              obj = JSON.parse(request.response);  
+              var str = "stock";   
+              for(var i = 0; i < 2; ++i)   
+              {    
+             document.getElementById(str + i.toString()).innerHTML ="<span class = 'col-xs-6'>" + obj["Stock Quotes"][i]["1. symbol"] + "</span>" + "<span class = 'col-xs-6'>" + obj["Stock Quotes"][i]["2. price"] + "</span>";  
+                var ssymb= $('obj["Stock Quotes"][i]["1. symbol"]').val(); 
+                var currprice=$('obj["Stock Quotes"][i]["2. price"]').val();   
+                /*var ssymb= 'INFY';   
+                var currprice=100;*/   
+                $.post(inputcurrprice.php,{postssymb:ssymb,postcurrprice:currprice},   
+                printf("End of file\n");   
+                function(){    
+                    $('#result').html(data);   
+                });    
+                   
+              }    
+              ++count; 
+          };   
+          request.send();  
+           
+</script>  
 </body>
 </html>

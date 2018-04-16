@@ -34,6 +34,7 @@ echo "Connected successfully";
             // exit();
                 $qty = $_POST['qty'];
                 $rate =$_POST['rate'];
+                $currprice;
                 /*$uname=$_POST['uname'];
                 $ssym=$_POST['ssym'];*/
                 $total = $qty * $rate;
@@ -44,6 +45,8 @@ echo "Connected successfully";
                     $uname=$row["uname"];
                     $ssym=$row["ssym"];
                     $rate=$row["rate"];
+                    $currprice=$row["currprice"];
+
                     //$rate=$total/$qty;
                 }
                 $rate=$total/$qty;
@@ -60,6 +63,15 @@ echo "Connected successfully";
                 } else {
                     echo "<br>Error updating record: updation<br> " . mysqli_error($conn);
                 }
+                // $profit=(($qty * $currprice)-$total);
+                //             $pper=(($profit/$row["total"])*100);
+                //             $sql1 = "UPDATE stocks SET currprice=$currprice,profit=$profit,pper=$pper WHERE stocks.ssym = '".$_POST['ssym']."' AND rate=$rate AND qty=$qty ;";
+                //         if (mysqli_query($conn, $sql1)) {
+                //             echo "Record updated successfully";
+                //         } else {
+                //             echo "<br>Error updating record: updation<br> " . mysqli_error($conn);
+                //         }
+                
                 $qty = $_POST['qty'];
                 $rate =$_POST['rate'];
                 /*$uname=$_POST['uname'];
@@ -116,7 +128,7 @@ echo "Connected successfully";
                 $rate =$_POST['rate'];
                 $total = $qty * $rate;
                 $sql3 = "INSERT INTO transactions(uname, ssym,qty,rate,total,sdate) VALUES
-                ('".$user."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$total.",'".$_POST['sdate']."')";
+                ('".$user."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$total.",'".$_POST['bdate']."')";
                 mysqli_query($conn,$sql3);
                 
             } 
