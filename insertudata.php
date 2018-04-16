@@ -60,7 +60,15 @@ echo "Connected successfully";
                 } else {
                     echo "<br>Error updating record: updation<br> " . mysqli_error($conn);
                 }
-               
+                $qty = $_POST['qty'];
+                $rate =$_POST['rate'];
+                /*$uname=$_POST['uname'];
+                $ssym=$_POST['ssym'];*/
+                $total = $qty * $rate;
+                $sql3 = "INSERT INTO transactionb(uname, ssym,qty,rate,total,bdate) VALUES
+                ('".$user."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$total.",'".$_POST['bdate']."')";
+                
+                mysqli_query($conn,$sql3);
                 
             } 
             else {
@@ -78,19 +86,19 @@ echo "Connected successfully";
             }
             
         }
-            else if(isset($_POST['transactions']))
-            {
+            // else if(isset($_POST['transactions']))
+            // {
 	
-                $sql3 = "INSERT INTO transactions(uname, ssym,qty,rate,total,sdate) VALUES
-                ('".$user."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$_POST['total'].",'".$_POST['bdate']."')";
+            //     $sql3 = "INSERT INTO transactions(uname, ssym,qty,rate,total,sdate) VALUES
+            //     ('".$user."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$_POST['total'].",'".$_POST['bdate']."')";
                 
-                mysqli_query($conn,$sql3);
-                    }
+            //     mysqli_query($conn,$sql3);
+            //         }
                 
 		
 		echo "agc";
         mysqli_close($conn);
-        //header("location: Userpage.php");
+        header("location: Userpage.php");
         
 }
 
