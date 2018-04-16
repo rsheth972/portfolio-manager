@@ -417,7 +417,7 @@ tr:nth-child(even) {background-color: #f2f2f2;
                 <div class="jumbotron" style="width:100%;float:center;">
                 <button id="show">Add/Delete</button>   
                 <table id="table_stocks" style="width:500px;padding:10px;border:2px solid black;float:center;">
-              <form action="insertdata.php" method="post">
+              <form action="insertudata.php" method="post">
                <tr style="padding:10px;"><td style="padding:10px;">Symbol:</td><td style="padding:10px;"><input type="text" name="ssym" style="width:300px;"></td></tr>
                <tr style="padding:10px;"><td style="padding:10px;">QTY:</td><td style="padding:10px;"><input type="number" name="qty" style="width:300px;"></td></tr>
                <tr style="padding:10px;"><td style="padding:10px;">Rate:</td><td style="padding:10px;"><input type="number" name="rate" style="width:300px;"></td></tr>
