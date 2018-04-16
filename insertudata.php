@@ -25,8 +25,8 @@ echo "Connected successfully";
             // //$result=2;
             $result=1;
             if($result>0)
-            {   echo "IN if <br>";
-                echo "Connected by <br>";
+            // {   echo "IN if <br>";
+            //     echo "Connected by <br>";
                 $sql = "SELECT * FROM stocks WHERE stocks.ssym = '".$_POST['ssym']."' AND stocks.uname = '".$user."'";
                 $result1 = mysqli_query($conn, $sql);
                 //echo $result1;
@@ -71,35 +71,73 @@ echo "Connected successfully";
                 mysqli_query($conn,$sql3);
                 
             } 
-            else {
-                $sql3 = "INSERT INTO transactionb(uname, ssym,qty,rate,total,bdate) VALUES
-                ('".$user."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$_POST['total'].",'".$_POST['bdate']."')";
-                
-                mysqli_query($conn,$sql3);
-                $sql = "INSERT INTO stocks(uname,ssym,qty,rate,total) VALUES('".$user."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$_POST['total'].")";
-        if (mysqli_query($conn, $sql)) {
-            echo "Record added successfully";
-        } else {
-            echo "Error updating record: new insertion<br> " . mysqli_error($conn);
-        }
-		
-            }
-            
-        }
-            // else if(isset($_POST['transactions']))
-            // {
+            else if(isset($_POST['transactions']))
+            {
 	
-            //     $sql3 = "INSERT INTO transactions(uname, ssym,qty,rate,total,sdate) VALUES
-            //     ('".$user."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$_POST['total'].",'".$_POST['bdate']."')";
+                // $sql3 = "INSERT INTO transactions(uname, ssym,qty,rate,total,sdate) VALUES
+                // ('".$user."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$_POST['total'].",'".$_POST['bdate']."')";
                 
-            //     mysqli_query($conn,$sql3);
-            //         }
+                // mysqli_query($conn,$sql3);
+                $sql = "SELECT * FROM stocks WHERE stocks.ssym = '".$_POST['ssym']."' AND stocks.uname = '".$user."'";
+                $result1 = mysqli_query($conn, $sql);
+                //echo $result1;
+                //echo $sql;
+            // exit();
+                $qty = $_POST['qty'];
+                $rate =$_POST['rate']; 
+                while($row = mysqli_fetch_assoc($result1)) {
+                    $qty=$row["qty"]-$qty;
+                    
+                    $uname=$row["uname"];
+                    $ssym=$row["ssym"];
+                    $rate=$row["rate"];
+                    $total = $qty * $rate;
+                }
+                //Deleting from stocks
+                $delete = "DELETE from stocks where stocks.ssym = '".$_POST['ssym']."' AND stocks.uname = '".$user."'";
+                if (mysqli_query($conn, $delete)) {
+                    echo "Record updated successfully";
+                } else {
+                    echo "<br>Error updating record: updation<br> " . mysqli_error($conn);
+                }
+                $sql1 = "INSERT INTO stocks(uname,ssym,qty,rate,total) VALUES('".$user."','".$_POST['ssym']."',".$qty.",".$rate.",".$total.")";
+               
+                if (mysqli_query($conn, $sql1)) {
+                    echo "Record updated successfully";
+                } else {
+                    echo "<br>Error updating record: updation<br> " . mysqli_error($conn);
+                }
+                $qty = $_POST['qty'];
+                $rate =$_POST['rate'];
+                $total = $qty * $rate;
+                $sql3 = "INSERT INTO transactions(uname, ssym,qty,rate,total,sdate) VALUES
+                ('".$user."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$total.",'".$_POST['sdate']."')";
+                mysqli_query($conn,$sql3);
                 
+            } 
+            
+        //     else {
+        //         $sql3 = "INSERT INTO transactions(uname, ssym,qty,rate,total,bdate) VALUES
+        //         ('".$user."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$_POST['total'].",'".$_POST['bdate']."')";
+                
+        //         mysqli_query($conn,$sql3);
+        //         $sql = "INSERT INTO stocks(uname,ssym,qty,rate,total) VALUES('".$user."','".$_POST['ssym']."',".$_POST['qty'].",".$_POST['rate'].",".$_POST['total'].")";
+        // if (mysqli_query($conn, $sql)) {
+        //     echo "Record added successfully";
+        // } else {
+        //     echo "Error updating record: new insertion<br> " . mysqli_error($conn);
+        // }
 		
-		echo "agc";
+        //     }
+        echo "agc";
         mysqli_close($conn);
         header("location: Userpage.php");
         
-}
+
+                    }
+                
+		
+		
+
 
 	?>

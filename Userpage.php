@@ -640,9 +640,9 @@ var chart = new CanvasJS.Chart("chart-container", {
 		toolTipContent: "{name}: <strong>{y}%</strong>",
 		indexLabel: "{name} - {y}%",
 		dataPoints: [
-			{ y: 75, name: "Stocks", exploded: true },
-			{ y: 20, name: "Mutual fund" },
-			{ y: 5, name: "Currency" },
+			{ y: 75, name: "Stocks", exploded: true }
+			// { y: 20, name: "Mutual fund" },
+			// { y: 5, name: "Currency" },
 		]
 	}]
 });
