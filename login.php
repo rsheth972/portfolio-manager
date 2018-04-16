@@ -8,6 +8,7 @@ if (isset($_POST['login']))
 {
 		if (empty($_POST['uname']) || empty($_POST['pwd'])) 
 		{
+			header("location: index.php");
 			$error = "Username or Password is invalid";
 		}
 
