@@ -308,9 +308,9 @@ tr:nth-child(even) {background-color: #f2f2f2;
                     ?></p></th>
                 <th id="color_even">Overall Networth<br><p style="font-size:0.9em; font-weight: normal;"><?php
                 $servername = "localhost";
-                        $username = "root";
-                        $password = "";
-                        $db="project";
+                $username = "root";
+                $password = "";
+                $db="project";
 
                         // Create connection
                     $conn = mysqli_connect($servername, $username, $password, $db);
@@ -357,33 +357,33 @@ tr:nth-child(even) {background-color: #f2f2f2;
      $db="project";
  
      // Create connection
- $conn = mysqli_connect($servername, $username, $password, $db);
- // Check connection
- if (!$conn) {
-     die("Connection failed: " . mysqli_connect_error());
- }
- $username=$_SESSION['login_user'];
- $sql = "SELECT ssym, qty, rate, total FROM stocks where stocks.uname='$username';";
- $result = mysqli_query($conn, $sql);
- 
- if (mysqli_num_rows($result) > 0) {
-     ?>
-     <table style="padding:10px;border:2px solid black;"><tr><th style="padding:10px;background-color:black;color:white;width:25%;">Stock</th><th style="padding:10px;background-color:black;color:white;width:25%;">Qty</th><th style="padding:10px;background-color:black;color:white;width:25%;">Rate</th><th style="padding:10px;background-color:black;color:white;width:25%;">Total</th></tr>
- <?php
-     while($row = mysqli_fetch_assoc($result)) {
-         ?>
-        <tr ><td style="padding:0px;width:25%;"><strong><?php echo $row["ssym"];?></strong></td><td style="padding:10px;width:20%;"><strong><?php echo  $row["qty"];?></strong></td><td style="padding:10px;width:20%;"><strong><?php echo $row["rate"];?></strong></td><td style="padding:10px;width:20%;"><?php echo $row["total"];?></strong></td><?php
-        
-     }
-     echo "</table>";
- } else {
-     echo "0 results";
- }
- 
- mysqli_close($conn);
- 
- ?>  <hr>
- <br>
+                    $conn = mysqli_connect($servername, $username, $password, $db);
+                    // Check connection
+                    if (!$conn) {
+                        die("Connection failed: " . mysqli_connect_error());
+                    }
+                    $username=$_SESSION['login_user'];
+                    $sql = "SELECT ssym, qty, rate, total FROM stocks where stocks.uname='$username';";
+                    $result = mysqli_query($conn, $sql);
+                    
+                    if (mysqli_num_rows($result) > 0) {
+                        ?>
+                        <table style="padding:10px;border:2px solid black;"><tr><th style="padding:10px;background-color:black;color:white;width:25%;">Stock</th><th style="padding:10px;background-color:black;color:white;width:25%;">Qty</th><th style="padding:10px;background-color:black;color:white;width:25%;">Rate</th><th style="padding:10px;background-color:black;color:white;width:25%;">Total</th></tr>
+                    <?php
+                        while($row = mysqli_fetch_assoc($result)) {
+                            ?>
+                            <tr ><td style="padding:0px;width:25%;"><strong><?php echo $row["ssym"];?></strong></td><td style="padding:10px;width:20%;"><strong><?php echo  $row["qty"];?></strong></td><td style="padding:10px;width:20%;"><strong><?php echo $row["rate"];?></strong></td><td style="padding:10px;width:20%;"><?php echo $row["total"];?></strong></td><?php
+                            
+                        }
+                        echo "</table>";
+                    } else {
+                        echo "0 results";
+                    }
+                    
+                    mysqli_close($conn);
+                    
+                    ?>  <hr>
+                <br>
                 <table>
                 <tr><td>
                 <h3>View stock</h3>
@@ -641,6 +641,32 @@ var chart = new CanvasJS.Chart("chart-container", {
 		indexLabel: "{name} - {y}%",
 		dataPoints: [
 			{ y: 75, name: "Stocks", exploded: true }
+            <?php
+                $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $db="project";
+
+                        // Create connection
+                    $conn = mysqli_connect($servername, $username, $password, $db);
+                    // Check connection
+                    $total;
+                    if (!$conn) {
+                        die("Connection failed: " . mysqli_connect_error());
+                    }
+                    $username=$_SESSION['login_user'];
+                    $sql = "SELECT sum(total) as Investment FROM stocks where stocks.uname='$username'";
+                    $result = mysqli_query($conn, $sql);
+
+                    if (mysqli_num_rows($result) > 0) {
+                        while($row = mysqli_fetch_assoc($result)) {
+                            echo "Rs.". $row["Investment"]. "/-";
+                        }
+                    } 
+
+                    mysqli_close($conn);
+
+                    ?>
 			// { y: 20, name: "Mutual fund" },
 			// { y: 5, name: "Currency" },
 		]

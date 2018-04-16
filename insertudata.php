@@ -86,6 +86,11 @@ echo "Connected successfully";
                 $qty = $_POST['qty'];
                 $rate =$_POST['rate']; 
                 while($row = mysqli_fetch_assoc($result1)) {
+                    if($qty>$row["qty"]){
+                        mysqli_close($conn);
+                        header("location: Userpage.php");
+                        
+                    }
                     $qty=$row["qty"]-$qty;
                     
                     $uname=$row["uname"];
