@@ -164,6 +164,44 @@ tr:nth-child(even) {background-color: #f2f2f2;
 
                     if (mysqli_num_rows($result) > 0) {
                         while($row = mysqli_fetch_assoc($result)) {
+                            $sql = "SELECT stocks.ssym FROM stocks where stocks.uname='$username' and stocks.profit=".$row["maxgainer"].";";
+                            $result = mysqli_query($conn, $sql);
+        
+                            if (mysqli_num_rows($result) > 0) {
+                                while($row = mysqli_fetch_assoc($result)) {
+                                    echo "Stock Symbol:". $row["ssym"]. "<br>";
+                                }
+                            } else {
+                                echo "0";
+                            }
+                            //echo "Rs.". $row["maxgainer"]. "/-<br>";
+                        }
+                    } else {
+                        echo "0";
+                    }
+                   
+
+                    mysqli_close($conn);
+
+                    ?>
+                    <?php
+                $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $db="project";
+
+                        // Create connection
+                    $conn = mysqli_connect($servername, $username, $password, $db);
+                    // Check connection
+                    if (!$conn) {
+                        die("Connection failed: " . mysqli_connect_error());
+                    }
+                    $username=$_SESSION['login_user'];
+                    $sql = "SELECT max(profit) as maxgainer FROM stocks where stocks.uname='$username'";
+                    $result = mysqli_query($conn, $sql);
+
+                    if (mysqli_num_rows($result) > 0) {
+                        while($row = mysqli_fetch_assoc($result)) {
                             echo "Rs.". $row["maxgainer"]. "/-<br>";
                         }
                     } else {
@@ -175,7 +213,46 @@ tr:nth-child(even) {background-color: #f2f2f2;
                     ?></p></th>
         </tr>
             <tr>
-                <th id="color_even">Max Losser<br><p style="font-size:0.9em; font-weight: normal;"><?php
+                <th id="color_even">Max Losser<br><p style="font-size:0.9em; font-weight: normal;">
+                <?php
+                $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $db="project";
+
+                        // Create connection
+                    $conn = mysqli_connect($servername, $username, $password, $db);
+                    // Check connection
+                    if (!$conn) {
+                        die("Connection failed: " . mysqli_connect_error());
+                    }
+                    $username=$_SESSION['login_user'];
+                    $sql = "SELECT min(profit) as maxgainer FROM stocks where stocks.uname='$username'";
+                    $result = mysqli_query($conn, $sql);
+
+                    if (mysqli_num_rows($result) > 0) {
+                        while($row = mysqli_fetch_assoc($result)) {
+                            $sql = "SELECT stocks.ssym FROM stocks where stocks.uname='$username' and stocks.profit=".$row["maxgainer"].";";
+                            $result = mysqli_query($conn, $sql);
+        
+                            if (mysqli_num_rows($result) > 0) {
+                                while($row = mysqli_fetch_assoc($result)) {
+                                    echo "Stock Symbol:". $row["ssym"]. "<br>";
+                                }
+                            } else {
+                                echo "0";
+                            }
+                            //echo "Rs.". $row["maxgainer"]. "/-<br>";
+                        }
+                    } else {
+                        echo "0";
+                    }
+                   
+
+                    mysqli_close($conn);
+
+                    ?>
+                    <?php
                 $servername = "localhost";
                         $username = "root";
                         $password = "";
