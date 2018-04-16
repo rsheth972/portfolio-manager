@@ -6,7 +6,7 @@ body {
   border-radius: 50%;
 }
 .header{
-    background-color: rgb(10, 20, 77);
+    background-color: dodgerblue;
     color:white;
     padding:6px;
     text-align: center;
@@ -15,14 +15,14 @@ body {
     border-radius: 2px;
 }
 h1,h3,h4,h5,h6{
-    color:rgb(46, 69, 196);
+    color:dodgerblue;
 }
 #navbar {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: rgb(46, 69, 196);
+    background-color: dodgerblue;
     position: -webkit-sticky; /* Safari */
     position: sticky;
     top: 0;
@@ -131,7 +131,7 @@ border-radius: 3px;
   border: 0px;
   color: #fff;
   text-shadow: 0 1px rgba(0,0,0,0.1); 
-  background-color: #4d90fe;
+  background-color: dodgerblue;
   padding: 17px 0px;
   font-family: roboto;
   font-size: 14px;
@@ -142,7 +142,7 @@ border-radius: 3px;
   /* border: 1px solid #2f5bb7; */
   border: 0px;
   text-shadow: 0 1px rgba(0,0,0,0.3);
-  background-color: #357ae8;
+  background-color: dodgerblue;
   /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
 }
 
@@ -162,7 +162,7 @@ border-radius: 3px;
 .dash{
     content: " ";
     display: block;
-    border-bottom: 1px solid rgb(46, 69, 196);
+    border-bottom: 1px solid dodgerblue;
 }
 .glyphicon-ring {
   width: 60px;

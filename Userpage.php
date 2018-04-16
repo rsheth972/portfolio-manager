@@ -451,8 +451,50 @@ tr:nth-child(even) {background-color: #f2f2f2;
           </div>
 
           <div id="user" class="tabcontent">
-            <h3>User</h3>
-            <p>Apna rupaiya sab pe bhari</p>
+            <br><br><h2 align=middle>User</h2>
+            <hr>
+                            <p> <?php 
+                    $servername = "localhost";
+                    $username = "root";
+                    $password = "";
+                    $db="project";
+                
+                    // Create connection
+                $conn = mysqli_connect($servername, $username, $password, $db);
+                // Check connection
+                if (!$conn) {
+                    die("Connection failed: " . mysqli_connect_error());
+                }
+                $username=$_SESSION['login_user'];
+                $sql = "SELECT user.uname, user.name,user.address,user.aadhar,user.pan,user.mob,user.email,user.dob,user.pwd FROM user where user.uname='$username';";
+                $result = mysqli_query($conn, $sql);
+                
+                if (mysqli_num_rows($result) > 0) {
+                    ?>
+                    <table style="padding:10px;border:2px solid black;"><tr><th style="padding:10px;background-color:black;color:white;width:25%;">Particulars</th><th style="padding:10px;background-color:black;color:white;width:25%;">Values</th></tr>
+                <?php
+                    while($row = mysqli_fetch_assoc($result)) {
+                        ?>
+                        <tr ><td style="padding:0px;width:25%;"><strong>User Name</strong></td><td style="padding:0px;width:25%;"><strong><?php echo $row["uname"];?></strong></td></tr>
+                        <tr><td style="padding:10px;width:20%;"><strong>Name</strong></td><td style="padding:10px;width:20%;"><strong><?php echo  $row["name"];?></strong></td></tr>
+                        <tr><td style="padding:10px;width:20%;"><strong>Address</strong></td><td style="padding:10px;width:20%;"><strong><?php echo  $row["address"];?></strong></td></tr>
+                        <tr><td style="padding:10px;width:20%;"><strong>Aadhar</strong></td><td style="padding:10px;width:20%;"><strong><?php echo  $row["aadhar"];?></strong></td></tr>
+                        <tr><td style="padding:10px;width:20%;"><strong>PAN</strong></td><td style="padding:10px;width:20%;"><strong><?php echo  $row["pan"];?></strong></td></tr>
+                        <tr><td style="padding:10px;width:20%;"><strong>Mobile no.</strong></td><td style="padding:10px;width:20%;"><strong><?php echo  $row["mob"];?></strong></td></tr>
+                        <tr><td style="padding:10px;width:20%;"><strong>Email</strong></td><td style="padding:10px;width:20%;"><strong><?php echo  $row["email"];?></strong></td></tr>
+                        <tr><td style="padding:10px;width:20%;"><strong>DOB</strong></td><td style="padding:10px;width:20%;"><strong><?php echo  $row["dob"];?></strong></td></tr>
+                        <tr><td style="padding:10px;width:20%;"><strong>Password</strong></td><td style="padding:10px;width:20%;"><strong><?php echo  $row["pwd"];?></strong></td></tr>
+                        <?php
+                        
+                    }
+                    echo "</table>";
+                } else {
+                    echo "0 results";
+                }
+                
+                mysqli_close($conn);
+                
+                ?></p>
           </div>
 
         </div>
