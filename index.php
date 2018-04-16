@@ -24,7 +24,7 @@
     <li style="float:right"><a href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     <li><a href="#contact">Contact</a></li>
     <li ><a class="active" href="#top">Home</a></li>
-    <li ><a href="https://economictimes.indiatimes.com/">News</a></li>
+    <li ><a href="https://economictimes.indiatimes.com/" target="_blank">News</a></li>
 </ul>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -215,8 +215,6 @@
                                 </p>
                             </div>
                         </div>
-                      
-            
            </div>       
         </div>
     </footer>
