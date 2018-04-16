@@ -742,10 +742,7 @@ function explodePie (e) {
                 //echo $url;
                     ?>
                 <script type = "text/javascript">     
-                // $(document).ready(function() { 
-                //    setInterval(displayPrice,3000); 
-                //   });
-
+                
                   var request = new XMLHttpRequest();  
                   var count = 0;   
                   request.open("GET", "<?php echo $url;?>");   
