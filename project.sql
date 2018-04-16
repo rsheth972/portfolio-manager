@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2018 at 12:41 PM
+-- Generation Time: Apr 16, 2018 at 11:18 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -44,25 +44,23 @@ CREATE TABLE `stocks` (
 --
 
 INSERT INTO `stocks` (`uname`, `ssym`, `qty`, `rate`, `total`, `currprice`, `profit`, `pper`) VALUES
-('rohan', 'INFY', 10, 5, 50, 200, 1950, 3900),
-('rohit', 'WIP', 5, 5, 25, 0, 0, 0),
-('sarah', 'ABB', 10, 2000, 20000, 2000, 99900, 99900),
-('rohit', 'INFY', 7, 7, 49, 200, 1351, 2757),
-('rohit', 'INFY', 7, 7, 49, 200, 1351, 2757),
-('rahil', 'APP', 15, 35, 425, 0, 0, 0),
-('rahil', 'As', 10, 56, 560, 0, 0, 0),
-('rahil', 'MUKUNd', 10, 1000, 10000, 0, 0, 0),
-('shloka', 'Rohit', 1, 1000, 1000, 0, 0, 0),
-('shloka', 'WIP', 7, 7, 49, 0, 0, 0),
-('shloka', 'roh', 1, 10, 100, 2000, 1900, 1900),
-('shloka', 'roh', 15, 5, 75, 2000, 29925, 39900),
-('shloka', 'roh', 5, 1, 5, 2000, 9995, 199900),
-('rahil', 'mukund', 50, 2, 100, 0, 0, 0),
-('rahil', 'INFY', 50, 50, 2500, 200, 7500, 300),
-('qwerty', 'INFY', 50, 150, 7500, 200, 2500, 33),
-('qwerty', 'WIPRO', 100, 200, 20000, 150, -5000, -25),
-('manoj', 'INFY', 10, 12, 120, 0, 0, 0),
-('manoj', 'INFY', 30, 15, 450, 0, 0, 0);
+('rohan', 'INFY', 10, 1012, 10120, 1134, 1220, 12),
+('rohan', 'WIPRO', 5, 300, 1500, 291, -45, -3),
+('rohan', 'ABB', 100, 20, 2000, 22, 200, 10),
+('mukund', 'INFY', 5, 1050, 5250, 1134, 420, 8),
+('mukund', 'IEX', 10, 1500, 15000, 1610, 1100, 7),
+('mukund', 'ONGC', 10, 200, 2000, 181, -190, -10),
+('mukund', 'SBIN', 10, 260, 2600, 250, -100, -4),
+('rohit', 'NCC', 10, 110, 1100, 130, 200, 18),
+('rohit', 'ITC', 20, 250, 5000, 265, 300, 6),
+('rohit', 'INFY', 20, 1100, 22000, 1134, 680, 3),
+('rahil', 'INFY', 10, 1000, 10000, 1134, 1340, 13),
+('rahil', 'IEX', 10, 1500, 15000, 1610, 1100, 7),
+('rahil', 'SBIN', 10, 260, 2600, 250, -100, -4),
+('pawar', 'NCC', 20, 100, 2000, 130, 600, 30),
+('pawar', 'WIPRO', 10, 300, 3000, 291, -90, -3),
+('pawar', 'ONGC', 10, 150, 1500, 181, 310, 21),
+('pawar', 'SBIN', 10, 270, 2700, 250, -200, -7);
 
 -- --------------------------------------------------------
 
@@ -84,24 +82,23 @@ CREATE TABLE `transactionb` (
 --
 
 INSERT INTO `transactionb` (`uname`, `ssym`, `qty`, `rate`, `total`, `bdate`) VALUES
-('rahil', 'APP', 15, 35, 425, '0000-00-00'),
-('rahil', 'As', 10, 56, 560, '2018-04-19'),
-('rahil', 'MUKUNd', 10, 1000, 10000, '2018-04-06'),
-('shloka', 'Rohit', 1, 1000, 1000, '2018-04-05'),
-('shloka', 'WIP', 7, 7, 49, '2018-04-06'),
-('shloka', 'WIP', 15, 10, 150, '2018-04-10'),
-('shloka', 'roh', 1, 10, 100, '2018-04-03'),
-('shloka', 'roh', 15, 5, 75, '2018-04-11'),
-('shloka', 'roh', 5, 1, 5, '2018-04-10'),
-('rahil', 'mukund', 50, 2, 100, '2018-04-12'),
-('qwerty', 'INFY', 50, 500, 25000, '2018-04-21'),
-('qwerty', 'INFY', 50, 50, 2500, '2018-04-05'),
-('qwerty', 'INFY', 50, 50, 2500, '2018-04-03'),
-('rahil', 'INFY', 50, 50, 2500, '2018-04-17'),
-('qwerty', 'INFY', 50, 150, 7500, '2018-04-12'),
-('qwerty', 'WIPRO', 100, 200, 20000, '2018-04-11'),
-('manoj', 'INFY', 10, 12, 120, '2018-04-18'),
-('manoj', 'INFY', 30, 15, 450, '2018-04-03');
+('rohan', 'INFY', 10, 1012, 10120, '2018-04-04'),
+('rohan', 'WIPRO', 5, 300, 1500, '2018-04-04'),
+('rohan', 'ABB', 100, 20, 2000, '2018-04-02'),
+('mukund', 'INFY', 5, 1050, 5250, '2018-02-15'),
+('mukund', 'IEX', 10, 1500, 15000, '2018-03-20'),
+('mukund', 'ONGC', 10, 200, 2000, '2018-02-08'),
+('mukund', 'SBIN', 10, 260, 2600, '2017-12-11'),
+('rohit', 'NCC', 10, 110, 1100, '2018-02-10'),
+('rohit', 'ITC', 20, 250, 5000, '2017-12-13'),
+('rohit', 'INFY', 20, 1100, 22000, '2018-04-10'),
+('rahil', 'INFY', 10, 1000, 10000, '2018-04-02'),
+('rahil', 'IEX', 10, 1500, 15000, '2018-04-04'),
+('rahil', 'SBIN', 10, 260, 2600, '2018-02-08'),
+('pawar', 'NCC', 20, 100, 2000, '2018-02-20'),
+('pawar', 'WIPRO', 10, 300, 3000, '2018-02-09'),
+('pawar', 'ONGC', 10, 150, 1500, '2017-10-10'),
+('pawar', 'SBIN', 10, 270, 2700, '2017-12-22');
 
 -- --------------------------------------------------------
 
@@ -117,16 +114,6 @@ CREATE TABLE `transactions` (
   `total` int(15) NOT NULL,
   `sdate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `transactions`
---
-
-INSERT INTO `transactions` (`uname`, `ssym`, `qty`, `rate`, `total`, `sdate`) VALUES
-('shloka', 'WIP', 15, 10, 150, '2018-04-10'),
-('rahil', 'MSFT', 10, 50, 500, '2018-04-18'),
-('qwerty', 'INFY', 20, 100, 2000, '2018-04-18'),
-('manoj', 'INFY', 10, 15, 150, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -151,16 +138,14 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`uname`, `name`, `address`, `aadhar`, `pan`, `mob`, `email`, `dob`, `pwd`) VALUES
-('manoj', 'Manoj Sharma', 'Kalyan', 983658392, 'YFY7656YF', 386529852, 'rohit.pagal.ladka.ha', '2018-04-19', 'manoj'),
 ('mukund', 'Mukund Vora', 'Vashi', 2147483647, 'AWFWEF34T', 998877665, 'mukund@gmail.com', '2018-04-10', 'mukund'),
-('pawar', 'Siddhesh', 'spit', 85201478, 'qwerty123', 963524108, 'siddhesh@spit.com', '2018-04-10', 'power'),
+('pawar', 'Siddhesh', 'spit', 85201478, 'qwerty123', 963524108, 'siddhesh@spit.com', '2018-04-10', 'siddesh'),
 ('pratik', 'Pratik Rathi', 'Goregoan', 239572981, 'UBBW6587F', 874698652, 'pratik@gmail.com', '2017-07-01', 'pratik'),
-('qwerty', 'qwerty', 'qwer', 7412685, '987456iuyt', 98742685, 'dfghj@dfgh.com', '2018-04-01', 'qwerty'),
 ('rahil', 'Rahil Sheth', 'Ghatkopar', 346723467, 'AFF464GE2', 997755662, 'rahil@gmail.com', '2016-04-13', 'rahil'),
 ('rohan', 'Rohan Pawar', 'Bhandup', 457348342, 'AFFQ675HS', 944266548, 'rohan@gmail.com', '2017-09-04', 'rohan'),
 ('rohit', 'Rohit Sharma', 'Kalyan', 352963452, 'UFGGT876G', 881122556, 'rohit@gmail.com', '2017-03-14', 'rohit'),
 ('sarah', 'Sarah Sonje', 'Kurla', 895649785, 'TDUU647GJ', 759856685, 'sarah@gmail.com', '2017-07-04', 'sarah'),
-('shloka', 'Shloka Saapru', 'Powai', 893249785, 'DGUN868HD', 759798221, 'shloka@gmail.com', '2013-04-08', 'sholka');
+('shloka', 'Shloka Saapru', 'Powai', 893249785, 'DGUN868HD', 759798221, 'shloka@gmail.com', '2013-04-08', 'shloka');
 
 --
 -- Indexes for dumped tables
