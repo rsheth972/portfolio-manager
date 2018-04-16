@@ -102,8 +102,8 @@ tr:nth-child(even) {background-color: #f2f2f2;
 <div id="mySidenav" class="sidenav">
         <a href="#" onclick="closeNav()" style="float:right;">X</a>
         <div class="tab">      
-          <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'portfolio')" id="defaultOpen"><span class="glyphicon glyphicon-list-alt"></span>&#9;Portfolio</button>
-          <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'stocks')"><span class="glyphicon glyphicon-stats"></span>&#9;Stocks
+          <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'portfolio')" ><span class="glyphicon glyphicon-list-alt"></span>&#9;Portfolio</button>
+          <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'stocks')" id="defaultOpen"><span class="glyphicon glyphicon-stats"></span>&#9;Stocks
           <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'mutual_funds')"><span class="glyphicon glyphicon-signal"></span>&#9;Mutual Funds
           <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'trade_currency')"><span class="glyphicon glyphicon-bitcoin"></span>&#9;Trade Currency
           <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'watchlist')"><span class="glyphicon glyphicon-eye-open"></span>&#9;Watchlist
@@ -597,26 +597,11 @@ tr:nth-child(even) {background-color: #f2f2f2;
                 Copyright © 2018. Everything done by Rahil,Mukund and Rohit.<br>
                 *******************************************************************************
             </div>
-            
-            <div id = "main" class = "container-fluid ">   +            
-       <h3 style = "text-align: center">Active Stock Prices</h3>  
-        <ul class = "well">    
-            <li id = "stock0">-</li>   
-            <li id = "stock1">-</li>   
-           <li id = "stock2">-</li>  
-            <li id = "stock3">-</li>   
-            <li id = "stock4">-</li>   
-           <li id = "stock5">-</li>   
-            <li id = "stock6">-</li>   
-            <li id = "stock7">-</li>   
-            <li id = "stock8">-</li>   
-            <li id = "stock9">-</li>   
-        </ul>  
-    <div>
+       
     <form  id="sampleForm" name="sampleForm" method="post" action="inputcurrprice.php">
     <input type="hidden" name="ssym" >
     <input type="hidden" name="rate">
-    <a href="#" onclick="setValue();">Click to submit</a>
+    <a href="#" onclick="setValue();"></a>
 </form>
     <script>
 function openNav() {
@@ -761,7 +746,7 @@ function explodePie (e) {
                                     document.sampleForm.ssym.value = ssym;
                                     document.sampleForm.rate.value = rate;
                                     document.forms["sampleForm"].submit();
-                          },15000); 
+                          },30000); 
                           }
                           ++count; 
                       };   
