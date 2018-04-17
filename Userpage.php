@@ -764,7 +764,7 @@ function explodePie (e) {
                     $list = substr_replace($symString, "", -1);
                 }
                 
-                $url = "https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&symbols=".$list."&apikey=MUPL9IQMVVNXK8FS";
+                $url = "https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&symbols=".$list."&apikey=2ELJ1YAXPWWUKSIH";
 
                 //echo $url;
                     ?>
@@ -784,6 +784,8 @@ function explodePie (e) {
                           var ssym = json["Stock Quotes"][i]["1. symbol"];
                           console.log(json["Stock Quotes"][i]["2. price"]);
                           var rate= json["Stock Quotes"][i]["2. price"];
+                          document.sampleForm.ssym.value = ssym;
+                          document.sampleForm.rate.value = rate;
                           setTimeout(function setValue(){
                         //     console.log(json["Stock Quotes"][i]["1. symbol"]);
                         //   var ssym = json["Stock Quotes"][i]["1. symbol"];
