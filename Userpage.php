@@ -711,7 +711,7 @@ function explodePie (e) {
                     die("Connection failed: " . mysqli_connect_error());
                 }
 
-                $querySym = "SELECT ssym from stocks;";
+                $querySym = "SELECT distinct ssym from stocks;";
 
                 $sym = mysqli_query($conn, $querySym);
                 $symString = "";
@@ -722,7 +722,7 @@ function explodePie (e) {
                     $list = substr_replace($symString, "", -1);
                 }
                 
-                $url = "https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&symbols=".$list."&apikey=MUPL9IQMVVNXK8FS";
+                $url = "https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&symbols=".$list."&apikey=2ELJ1YAXPWWUKSIH";
 
                 //echo $url;
                     ?>
@@ -742,11 +742,13 @@ function explodePie (e) {
                           var ssym = json["Stock Quotes"][i]["1. symbol"];
                           console.log(json["Stock Quotes"][i]["2. price"]);
                           var rate= json["Stock Quotes"][i]["2. price"];
+                          document.sampleForm.ssym.value = ssym;
+                          document.sampleForm.rate.value = rate;
                           setTimeout(function setValue(){
-                                    document.sampleForm.ssym.value = ssym;
-                                    document.sampleForm.rate.value = rate;
+                                   // document.sampleForm.ssym.value = ssym;
+                                   // document.sampleForm.rate.value = rate;
                                     document.forms["sampleForm"].submit();
-                          },30000); 
+                          },10000000); 
                           }
                           ++count; 
                       };   
