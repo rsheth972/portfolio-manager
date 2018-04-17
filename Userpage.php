@@ -343,7 +343,7 @@ tr:nth-child(even) {background-color: #f2f2f2;
         <div style="text-align:center">
         <div id="portfolio" class="tabcontent">
             <h3>Total Portfolio</h3>
-            <div id="chart-container" style="height: 500px; width: 100%;"></div>
+            <div id="chart-container" style="height: 600px; width: 600px;float:center;"></div>
           </div>
            
                 </div>
@@ -374,7 +374,13 @@ tr:nth-child(even) {background-color: #f2f2f2;
                     <?php
                         while($row = mysqli_fetch_assoc($result)) {
                             ?>
-                            <tr ><td style="padding:0px;width:15%;"><strong><?php echo $row["ssym"];?></strong></td><td style="padding:10px;width:15%;"><strong><?php echo  $row["qty"];?></strong></td><td style="padding:10px;width:15%;"><strong><?php echo $row["rate"];?></strong></td><td style="padding:10px;width:15%;"><?php echo $row["total"];?></strong></td><td style="padding:0px;width:15%;"><strong><?php echo $row["profit"];?></strong></td><td style="padding:0px;width:15%;"><strong><?php echo $row["pper"];?></strong></td><?php
+                            <tr style="<?php 
+                            if($row["profit"]>0)
+                            {
+                                echo "color:green;";
+                            }
+                            else echo "color:red;";
+                            ?>"><td style="padding:0px;width:15%;"><strong><?php echo $row["ssym"];?></strong></td><td style="padding:10px;width:15%;"><strong><?php echo  $row["qty"];?></strong></td><td style="padding:10px;width:15%;"><strong><?php echo $row["rate"];?></strong></td><td style="padding:10px;width:15%;"><?php echo $row["total"];?></strong></td><td style="padding:0px;width:15%;"><strong><?php echo $row["profit"];?></strong></td><td style="padding:0px;width:15%;"><strong><?php echo $row["pper"];?></strong></td><?php
                             
                         }
                         echo "</table>";
@@ -597,7 +603,7 @@ tr:nth-child(even) {background-color: #f2f2f2;
                 Copyright © 2018. Everything done by Rahil,Mukund and Rohit.<br>
                 *******************************************************************************
             </div>
-       
+            
     <form  id="sampleForm" name="sampleForm" method="post" action="inputcurrprice.php">
     <input type="hidden" name="ssym" >
     <input type="hidden" name="rate">
@@ -646,9 +652,46 @@ var chart = new CanvasJS.Chart("chart-container", {
 		toolTipContent: "{name}: <strong>{y}%</strong>",
 		indexLabel: "{name} - {y}%",
 		dataPoints: [
-			{ y: 75, name: "Stocks", exploded: true },
-			{ y: 20, name: "Mutual fund" },
-			{ y: 5, name: "Currency" },
+			//{ y: 75, name: "Stocks", exploded: true },
+            <?php
+                $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $db="project";
+
+                        // Create connection
+                    $conn = mysqli_connect($servername, $username, $password, $db);
+                    // Check connection
+                    if (!$conn) {
+                        die("Connection failed: " . mysqli_connect_error());
+                    }
+                    $username=$_SESSION['login_user'];
+                    $sql = "SELECT sum(total) as Investment FROM stocks where stocks.uname='$username'";
+                    $result = mysqli_query($conn, $sql);
+                    $total;
+                    if (mysqli_num_rows($result) > 0) {
+                        while($row = mysqli_fetch_assoc($result)) {
+                           $total= $row["Investment"];
+                        }
+                    } else {
+                        echo "0";
+                    }
+                    $sql = "SELECT ssym,total FROM stocks where stocks.uname='$username'";
+                    $result1 = mysqli_query($conn, $sql);
+                    $perport;
+                    if (mysqli_num_rows($result1) > 0) {
+                        while($row = mysqli_fetch_assoc($result1)) {
+                           $perport=($row["total"]/$total)*100;
+                           echo "{ y: ".$perport.", name: \"".$row["ssym"]."\" },";
+                        }
+                    } else {
+                        echo "0";
+                    }
+                    mysqli_close($conn);
+
+                    ?>
+			// { y: 20, name: "Mutual fund" },
+			// { y: 5, name: "Currency" },
 		]
 	}]
 });
@@ -697,8 +740,7 @@ function explodePie (e) {
            
 </script>  
 <?php 
-                echo "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>
-                ";
+                echo "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>";
                     $servername = "localhost";
                     $username = "root";
                     $password = "";
@@ -711,7 +753,7 @@ function explodePie (e) {
                     die("Connection failed: " . mysqli_connect_error());
                 }
 
-                $querySym = "SELECT ssym from stocks;";
+                $querySym = "SELECT distinct ssym from stocks;";
 
                 $sym = mysqli_query($conn, $querySym);
                 $symString = "";
@@ -736,18 +778,68 @@ function explodePie (e) {
                       request.onload = function() {    
                           var json = JSON.parse(request.response);  
                           console.log(json);
-                          var i;
+                          var i=1;
                           for(i=0;i<json["Stock Quotes"].length;i++){
                           console.log(json["Stock Quotes"][i]["1. symbol"]);
                           var ssym = json["Stock Quotes"][i]["1. symbol"];
                           console.log(json["Stock Quotes"][i]["2. price"]);
                           var rate= json["Stock Quotes"][i]["2. price"];
                           setTimeout(function setValue(){
+                        //     console.log(json["Stock Quotes"][i]["1. symbol"]);
+                        //   var ssym = json["Stock Quotes"][i]["1. symbol"];
+                        //   console.log(json["Stock Quotes"][i]["2. price"]);
+                        //   var rate= json["Stock Quotes"][i]["2. price"];
                                     document.sampleForm.ssym.value = ssym;
                                     document.sampleForm.rate.value = rate;
                                     document.forms["sampleForm"].submit();
-                          },30000); 
-                          }
+                                    
+                                        
+                          },1000000); 
+                        }
+
+
+
+                            // function myLoop () {           //  create a loop function
+                            // setTimeout(function () {    //  call a 3s setTimeout when the loop is called
+                            //     //alert('hello'); 
+                            //     console.log(json["Stock Quotes"][i]["1. symbol"]);
+                            //     var ssym = json["Stock Quotes"][i]["1. symbol"];
+                            //     console.log(json["Stock Quotes"][i]["2. price"]);
+                            //     var rate= json["Stock Quotes"][i]["2. price"];    
+                            //     document.sampleForm.ssym.value = ssym;
+                            //     document.sampleForm.rate.value = rate;
+                            //     document.forms["sampleForm"].submit();
+                            //              //  your code here
+                            //     i++;                     //  increment the counter
+                            //     if (i < json["Stock Quotes"].length) {            //  if the counter < 10, call the loop function
+                            //         myLoop();             //  ..  again which will trigger another 
+                            //     }                        //  ..  setTimeout()
+                            // }, 5000)
+                            // }
+
+                            // myLoop();
+
+
+
+                            
+                            //var i = 0, howManyTimes = json["Stock Quotes"].length;
+                            // for(var i=0;i<json["Stock Quotes"].length;i++){
+                            // function f() {
+                            //     console.log(json["Stock Quotes"][i]["1. symbol"]);
+                            //     var ssym = json["Stock Quotes"][i]["1. symbol"];
+                            //     console.log(json["Stock Quotes"][i]["2. price"]);
+                            //     var rate= json["Stock Quotes"][i]["2. price"]; 
+                                   
+                            //     document.sampleForm.ssym.value = ssym;
+                            //     document.sampleForm.rate.value = rate;
+                            //     document.forms["sampleForm"].submit();
+                            //     if( i < json["Stock Quotes"].length ){
+                                    
+                            //         setTimeout( f, 18000 );
+                            //     }
+                            // }
+                            // f();
+                            // }
                           ++count; 
                       };   
                       request.send();  
