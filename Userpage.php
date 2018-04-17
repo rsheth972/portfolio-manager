@@ -102,7 +102,7 @@ tr:nth-child(even) {background-color: #f2f2f2;
 <div id="mySidenav" class="sidenav">
         <a href="#" onclick="closeNav()" style="float:right;">X</a>
         <div class="tab">      
-          <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'portfolio')" ><span class="glyphicon glyphicon-list-alt"></span>&#9;Portfolio</button>
+          <!--<button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'portfolio')" ><span class="glyphicon glyphicon-list-alt"></span>&#9;Portfolio</button>-->
           <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'stocks')" id="defaultOpen"><span class="glyphicon glyphicon-stats"></span>&#9;Stocks
           <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'mutual_funds')"><span class="glyphicon glyphicon-signal"></span>&#9;Mutual Funds
           <button class="btn btn-primary btn-lg tablinks" type="button"  style="width: 94.5%; margin: 5px;" onclick="opensecurity(event, 'trade_currency')"><span class="glyphicon glyphicon-bitcoin"></span>&#9;Trade Currency
@@ -340,15 +340,24 @@ tr:nth-child(even) {background-color: #f2f2f2;
                 </tr>
     </table>
 
-        <div style="text-align:center">
+    <!-- <div style="text-align:center">
         <div id="portfolio" class="tabcontent">
             <h3>Total Portfolio</h3>
-            <div id="chart-container" style="height: 600px; width: 600px;float:center;"></div>
+            <div align=middle style="float:center;">
+            <div id="chart-container" style="height: 700px; width: 700px;float:center;"></div>
+            </div>
           </div>
            
-                </div>
+                </div> -->
                  <div id="stocks" class="tabcontent" >
                  <br><br>
+                 <h3>Total Portfolio</h3><hr>
+                 <br><br>
+            <div align=middle style="float:center;">
+            <div id="chart-container" style="height: 500px; width: 500px;float:center;"></div>
+            </div>
+            <hr>
+            <br><br>
                 <h2 align=middle id="invest">Investments</h2>
                 <hr>
     
