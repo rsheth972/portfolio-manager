@@ -45,7 +45,7 @@
           </div>
     
           <div class="item">
-            <img src="main.jpg" alt="Image" height="500">
+            <img src="images/main.jpg" alt="Image" height="500">
             <div class="carousel-caption">
                 <br><br>
                 <h3>Easy to use</h3>
@@ -109,11 +109,11 @@
         <h3 style="text-align: left"><strong>What We Do</strong></h3><br>
         <div class="row">
             <div class="col-sm-6">
-            <img src="nepse-forum.png" class="img-responsive" style="width:100%; height:330px" alt="Image">
+            <img src="images/nepse-forum.png" class="img-responsive" style="width:100%; height:330px" alt="Image">
             <p>Current Project</p>
             </div>
             <div class="col-sm-6"> 
-            <img src="stock-featured.jpg" class="img-responsive" style="width:100%; height:330px" alt="Image">
+            <img src="images/stock-featured.jpg" class="img-responsive" style="width:100%; height:330px" alt="Image">
             <p>Project 2</p>    
             </div>
         </div> Plan your retirement, children's education, or your real estate needs andÂ link it to your portfolio for tracking your goals. 
@@ -191,13 +191,13 @@
                                 <!--<div class="glyphicon-ring glyphicon-teal"> <span class="glyphicon glyphicon-user glyphicon-bordered"></span>
                                 </div>--><br>
                                 <u><h3>Team Leaders</h3></u>
-                                <img   class="prof" src="Rahil.JPG" alt="Avatar" style="width:100px; height: 100px;">
+                                <img   class="prof" src="images/Rahil.JPG" alt="Avatar" style="width:100px; height: 100px;">
                                 <p style="color:black; font-size: 15px; "><strong>Rahil</strong><br>
                                   Rahil is a great programmer and an avid thinker<br>
-                                  <img   class="prof" src="Mukund.jpg" alt="Avatar" style="width:100px; height: 100px;">
+                                  <img   class="prof" src="images/Mukund.jpg" alt="Avatar" style="width:100px; height: 100px;">
                                 <p style="color:black; font-size: 15px; "><strong>Mukund</strong><br>
                                   Mukund is a person of great values and Extraordinary ideas<br>
-                                  <img   class="prof" src="Rohit.jpg" alt="Avatar" style="width:100px; height: 100px;">
+                                  <img   class="prof" src="images/Rohit.jpg" alt="Avatar" style="width:100px; height: 100px;">
                                 <p style="color:black; font-size: 15px; "><strong>Rohit</strong><br>
                                   Rohit is very persistent in his work and is the most hardworking of the co founders<br>
                                 </p>

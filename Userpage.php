@@ -418,7 +418,7 @@ tr:nth-child(even) {background-color: #f2f2f2;
 				$stock=$_POST["search"];
                 $stock='/'.$stock.'/';
                 /*$stock='/IN/';*/
-                $ch = fopen("NSE.csv", "r");
+                $ch = fopen("companylist.csv", "r");
                 while($row = fgetcsv($ch)) {
                     if (preg_match($stock, $row = implode(' | ', $row))) {
                         echo '<li>' . $row . ' </li><br>';
