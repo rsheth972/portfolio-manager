@@ -805,7 +805,7 @@ function explodePie (e) {
                                     document.forms["sampleForm"].submit();
                                     
                                         
-                          },10000); 
+                          },100000); 
                         }
 
 
